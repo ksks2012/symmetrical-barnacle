@@ -25,3 +25,31 @@ public:
         return root;
     }
 };
+
+// Time: O(n), Space: O(n)
+class Solution {
+public:
+    TreeNode* invertTree(TreeNode* root) {
+        queue<TreeNode *> q;
+        if(root == nullptr)
+            return root;
+        q.push(root);
+
+        while(!q.empty()) {
+            TreeNode *top = q.front();
+            q.pop();
+            TreeNode* left_tmp = top->left;
+            TreeNode* right_tmp = top->right;
+            top->left = right_tmp;
+            top->right = left_tmp;
+            if(top->left != nullptr) {
+                q.push(top->left);
+            }
+            if(top->right != nullptr) {
+                q.push(top->right);
+            }
+        }
+        
+        return root;
+    }
+};
