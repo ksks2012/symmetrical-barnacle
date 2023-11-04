@@ -42,3 +42,32 @@ public:
         return max(max_left, max_right)+1;
     }
 };
+
+// Time: O(n), Space: O(n)
+class Solution {
+public:
+    int maxDepth(TreeNode* root) {
+        queue<TreeNode *> q;
+        int ans = 0;
+        if(root == nullptr)
+            return ans;
+        q.push(root);
+
+        while(!q.empty()) {
+            int q_size = q.size();
+            for(int i = 0; i < q_size; i++) {
+                TreeNode *top = q.front();
+                q.pop();
+                if(top->left != nullptr) {
+                    q.push(top->left);
+                }
+                if(top->right != nullptr) {
+                    q.push(top->right);
+                }
+            }
+            ans++;
+        }
+        
+        return ans;
+    }
+};
