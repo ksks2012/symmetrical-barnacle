@@ -28,3 +28,38 @@ public:
         return root1;
     }
 };
+
+// Time: O(n), Space: O(n)
+#define TREE_PAIR pair<TreeNode*, TreeNode*>
+class Solution {
+public:
+    TreeNode* mergeTrees(TreeNode* root1, TreeNode* root2) {
+        stack<TREE_PAIR> stk;
+        if(root1 == nullptr)
+            return root2;
+        if(root2 == nullptr)
+            return root1;
+        stk.push(TREE_PAIR(root1, root2));
+
+        while(!stk.empty()) {
+            TREE_PAIR top = stk.top();
+            stk.pop();
+            if(top.first == nullptr || top.second == nullptr) {
+                continue;
+            }
+            top.first->val += top.second->val;
+            if(top.first->left == nullptr) {
+                top.first->left = top.second->left;
+            } else {
+                stk.push(TREE_PAIR(top.first->left, top.second->left));
+            }
+            if(top.first->right == nullptr) {
+                top.first->right = top.second->right;
+            } else {
+                stk.push(TREE_PAIR(top.first->right, top.second->right));
+            }
+        }
+        
+        return root1;
+    }
+};
