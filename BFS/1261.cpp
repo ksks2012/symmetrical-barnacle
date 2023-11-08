@@ -52,21 +52,20 @@ public:
 class FindElements {
 public:
     TreeNode* root;
-    set<int> val;
+    unordered_set<int> val;
 
     void recovery(TreeNode* root) {
         if(root == nullptr) return;
 
+        val.insert(root->val);
+
         if(root->left != nullptr) {
             root->left->val = root->val * 2 + 1;
-            val.insert(root->left->val);
         }
             
         if(root->right != nullptr) {
             root->right->val = root->val * 2 + 2;
-            val.insert(root->right->val);
         }
-            
 
         recovery(root->left);
         recovery(root->right);
