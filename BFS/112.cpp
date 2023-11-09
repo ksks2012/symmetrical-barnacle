@@ -13,11 +13,8 @@
  */
 class Solution {
 public:
-
     bool DFS(TreeNode* root, int targetSum, int cur_sum) {
         if(root == nullptr) 
-            return false;
-        if(root == nullptr && cur_sum != targetSum) 
             return false;
         if(root->left == nullptr && root->right == nullptr && cur_sum + root->val == targetSum)
             return true;
