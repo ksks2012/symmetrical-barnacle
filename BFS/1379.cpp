@@ -38,8 +38,8 @@ class Solution {
 public:
     TreeNode* getTargetCopy(TreeNode* original, TreeNode* cloned, TreeNode* target) {
 		// check null
-		if(original == NULL)
-			return NULL;
+		if(original == nullptr)
+			return nullptr;
 
 		queue<TreeNode*> q;
 		q.push(cloned);
@@ -60,6 +60,6 @@ public:
 			}
 		}
 
-		return NULL;
+		return nullptr;
     }
 };

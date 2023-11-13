@@ -23,7 +23,7 @@ class Solution {
 public:
     vector<vector<int>> levelOrder(Node* root) {
         vector<vector<int>> ans;
-        if(root == NULL)
+        if(root == nullptr)
             return ans;
         queue<Node *> q;
         q.push(root);
@@ -34,7 +34,7 @@ public:
             for(int i = 0; i < q_size; i++) {
                 Node *node = q.front();
                 q.pop();
-                if(node != NULL) {
+                if(node != nullptr) {
                     for(int j = 0; j < node->children.size(); j++) {
                         q.push(node->children[j]);
                     }

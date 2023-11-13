@@ -46,12 +46,12 @@ class Solution {
 public:  
     int min_dif = INT_MAX, val = -1;    
     int getMinimumDifference(TreeNode* root) {
-        if (root->left != NULL) 
+        if (root->left != nullptr) 
             getMinimumDifference(root->left);
         if (val >= 0) 
             min_dif = min(min_dif, root->val - val);
         val = root->val;
-        if (root->right != NULL) 
+        if (root->right != nullptr) 
             getMinimumDifference(root->right);
         return min_dif;
     }

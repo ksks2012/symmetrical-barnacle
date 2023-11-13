@@ -14,7 +14,8 @@
 class Solution {
 public:
     pair<int, TreeNode*> DFS(TreeNode* root) {
-        if (!root) return {0, NULL};
+        if (!root) 
+            return {0, nullptr};
         // <level, root>
         pair<int, TreeNode*> l = DFS(root->left);
         pair<int, TreeNode*> r = DFS(root->right);
