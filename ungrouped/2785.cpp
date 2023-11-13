@@ -3,7 +3,8 @@
 class Solution {
 public:
     bool is_vowels(char c) {
-        return c == 'a' || c == 'A' || c == 'e' || c == 'E' || c == 'i' || c == 'I' || c == 'o' || c == 'O' || c == 'u' || c == 'U';
+        c = tolower(c);
+        return c == 'a' || c == 'e' || c == 'i'  || c == 'o'|| c == 'u';
     }
 
     string sortVowels(string s) {
