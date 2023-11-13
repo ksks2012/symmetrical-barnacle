@@ -41,3 +41,24 @@ public:
         return ans;
     }
 };
+
+class Solution {
+public:
+    void DFS(TreeNode* root, int level, vector<int> &ans) {
+        if(root == nullptr) 
+            return;
+        
+        if(level == ans.size()) 
+            ans.push_back(root -> val);
+        ans[level] = max(ans[level], root -> val);
+        
+        DFS(root -> left, level + 1, ans);
+        DFS(root -> right, level + 1, ans);
+    }
+    
+    vector<int> largestValues(TreeNode* root) {
+        vector<int> ans;
+        DFS(root, 0, ans);
+        return ans;
+    }
+};
