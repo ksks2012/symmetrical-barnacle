@@ -42,3 +42,25 @@ public:
         return ans;
     }
 };
+
+class Solution {
+public:
+    // vector<vector<int>> ans;
+    void DFS(TreeNode* root, int level, vector<vector<int>> &ans) {
+        if(root == nullptr)
+            return;
+        if(level == ans.size()) {
+            ans.push_back({});
+        }
+        ans[level].push_back(root->val);
+        DFS(root->left, level + 1, ans);
+        DFS(root->right, level + 1, ans);
+    }
+
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        vector<vector<int>> ans;
+        DFS(root, 0, ans);
+        return ans;
+        
+    }
+};
