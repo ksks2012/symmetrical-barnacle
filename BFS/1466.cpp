@@ -15,24 +15,24 @@ public:
 
         vector<bool> visited(n, false);
         int ans = 0;
-        stack<int> q;
+        stack<int> s;
         visited[0] = 1;
-        q.push(0);
-        while(q.size() != 0) {
-            int len = q.size();
+        s.push(0);
+        while(s.size() != 0) {
+            int len = s.size();
             for(int i = 0; i < len; i++) {
-                int top = q.top();
-                q.pop();
+                int top = s.top();
+                s.pop();
                 for(int j : adj[top]){
                     if(!visited[j]) {
-                        q.push(j);
+                        s.push(j);
                         ans++;
                         visited[j] = 1;
                     }
                 }
                 for(int j : pre_adj[top]){
                     if(!visited[j]) {
-                        q.push(j);
+                        s.push(j);
                         visited[j] = 1;
                     }
                 }
