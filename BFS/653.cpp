@@ -47,17 +47,26 @@ public:
 
 class Solution {
     bool doesExist(TreeNode* root, int &target){
-        if (!root) return false;
-        if (root->val == target) return true;
-        if (root->val > target) return doesExist(root->left, target);
-        else return doesExist(root->right, target);
+        if (!root) 
+            return false;
+        if (root->val == target) 
+            return true;
+
+        if (root->val > target) 
+            return doesExist(root->left, target);
+        else 
+            return doesExist(root->right, target);
     }
+
     bool find(TreeNode* root, TreeNode* cur, int &k) {
-        if (!cur) return false;
+        if (!cur) 
+            return false;
         int target = k - cur->val;
-        if (target != cur->val && doesExist(root, target)) return true;
+        if (target != cur->val && doesExist(root, target)) 
+            return true;
         return find(root, cur->left, k) || find(root, cur->right, k);
     }
+    
 public:
     bool findTarget(TreeNode* root, int k) {
         return find(root, root, k);
