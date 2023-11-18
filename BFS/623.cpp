@@ -31,8 +31,7 @@ private:
             }
         }
 
-        while(!q.empty())
-        {
+        while(!q.empty()) {
             auto it = q.front();
             q.pop();
             TreeNode* node1 = new TreeNode(val);
