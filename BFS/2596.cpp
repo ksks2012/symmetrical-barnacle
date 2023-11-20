@@ -21,13 +21,8 @@ public:
             int tmp_x  = abs(tmp[i].first - tmp[i + 1].first);
             int tmp_y = abs(tmp[i].second - tmp[i + 1].second);
 
-            if(tmp_x != 1 && tmp_x != 2 && tmp_y != 1 && tmp_y != 2)
+            if(tmp_x * tmp_y != 2)
                 return false;
-            if(tmp_x == 2 && tmp_y != 1) 
-                return false;
-            if(tmp_x == 1 && tmp_y != 2)
-                return false;
-
         }
 
         return true;
