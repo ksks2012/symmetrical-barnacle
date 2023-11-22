@@ -24,7 +24,7 @@ public:
             return 0;
         }
         
-        // perfectSquares contain all perfect square numbers which 
+        // perfect_squares contain all perfect square numbers which 
         // are smaller than or equal to n.
         vector<int> perfect_squares;
         // count[i - 1] = the least number of perfect 
