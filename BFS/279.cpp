@@ -57,24 +57,24 @@ public:
             q.push(i);
         }
         
-        int tmp = 1;
+        int cur_count = 1;
         while (!q.empty()) {
-            tmp++;
+            cur_count++;
             
-            int searchQSize = q.size();
-            for (int i = 0; i < searchQSize; i++) {
+            int q_size = q.size();
+            for (int i = 0; i < q_size; i++) {
                 int tmp = q.front();
                 // Check the neighbors of node tmp which are the sum 
                 // of tmp and a perfect square number.
                 for (auto& j : perfect_squares) {
                     if (tmp + j == n) {
                         // We have reached node n.
-                        return tmp;
+                        return cur_count;
                     } else if ((tmp + j < n) && (count[tmp + j - 1] == 0)) {
                         // If count[tmp + j - 1] > 0, this is not 
                         // the first time that we visit this node and we should 
                         // skip the node (tmp + j).
-                        count[tmp + j - 1] = tmp;
+                        count[tmp + j - 1] = cur_count;
                         q.push(tmp + j);
                     } else if (tmp + j > n) {
                         // We don't need to consider the nodes which are greater ]
