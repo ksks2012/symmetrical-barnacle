@@ -12,14 +12,13 @@ public:
         dist[start] = 0;
         priority_queue<pair<int, int>, vector<pair<int, int>> , greater<pair<int,int>>> q;
         q.push(make_pair(0, start));
-        pair<int, int> temp;
         vector<bool> visited(n + 1);
         while(!q.empty()) {
-            temp = q.top();
+            pair<int, int> tmp = q.top();
             q.pop();
-            int u = temp.second;
+            int u = tmp.second;
             visited[u] = true;
-            for(int i=0; i < g[u].size(); i++) {
+            for(int i = 0; i < g[u].size(); i++) {
                 int v = g[u][i].first;
                 int weight = g[u][i].second;
                 if(visited[v] == false && dist[v] > dist[u] + weight){
