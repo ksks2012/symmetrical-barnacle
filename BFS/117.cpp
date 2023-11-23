@@ -54,8 +54,10 @@ public:
                 if(prev != nullptr) {
                     prev->next = tmp;
                 }
-                q.push(tmp->left);
-                q.push(tmp->right);
+                if(tmp->left)
+                    q.push(tmp->left);
+                if(tmp->right)
+                    q.push(tmp->right);
                 prev = tmp;
             }
         }
