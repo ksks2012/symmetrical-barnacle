@@ -56,3 +56,26 @@ public:
         return F(0, prices.size(), prices);
     }
 };
+
+class Solution {
+public:
+    int minimumCoins(vector<int>& prices) {
+        int n = prices.size();
+        int dp[1005][2];
+        // initialize
+        for(int i = 0 ; i <= n ; i ++){
+            dp[i][0] = dp[i][1] = 999999;
+        }
+        dp[1][1] = prices[0];
+        // dp
+        for(int i = 1 ; i < n ; i ++){
+            // buy i-th
+            dp[i + 1][1] = min(dp[i][0] ,dp[i][1]) + prices[i];
+            // not buy i-th
+            for(int j = i; j + j >= i  + 1; j --){
+                dp[i + 1][0] = min(dp[i + 1][0] , dp[j][1]);
+            }
+        }
+        return min(dp[n][0], dp[n][1]);
+    }
+};
