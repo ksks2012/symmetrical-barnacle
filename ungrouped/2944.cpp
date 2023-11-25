@@ -46,7 +46,7 @@ private:
         if(dp[i] != -1) 
             return dp[i];
         int minCoins = 1e9;
-        for(int j = i + 1; j <=min (n, 2 * (i + 1)); j++) 
+        for(int j = i + 1; j <= min(n, 2 * (i + 1)); j++) 
             minCoins = min(minCoins, F(j, n, prices));
         return dp[i] = prices[i] + minCoins;
     }
