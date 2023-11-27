@@ -39,6 +39,7 @@ public:
 };
 
 class Solution {
+public:
     int getMaxGap(vector<int> bars){
         sort(bars.begin(), bars.end());
         int count = 2, res = 2;
