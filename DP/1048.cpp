@@ -37,3 +37,36 @@ public :
         return ans;
     }
 };
+
+
+class Solution {
+
+public :
+
+    int longestStrChain(vector<string> &words) {
+        unordered_map<string, int> dp;
+
+        // Sorting the list in terms of the word length.
+        sort(words.begin(), words.end(), [](const string &word1, const string &word2) {
+            return word1.size() < word2.size();
+        });
+
+        int ans = 1;
+
+        for (const string &word : words) {
+            int tmp = 1;
+            // Find all possible predecessors for the current word by removing one letter at a time.
+            for (int i = 0; i < word.length(); i++) {
+                string predecessor = word.substr(0, i) + word.substr(i + 1, word.length() + 1);
+                if (dp.find(predecessor) != dp.end()) {
+                    int previousLength = dp[predecessor];
+                    tmp = max(tmp, previousLength + 1);
+                }
+            }
+            dp[word] = tmp;
+            ans = max(ans, tmp);
+        }
+        return ans;
+    }
+};
+
