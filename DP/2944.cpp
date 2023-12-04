@@ -38,6 +38,7 @@ public:
     }
 };
 
+// Step 2: memo
 class Solution {
 private:
     int dp[1005];
@@ -94,5 +95,29 @@ public:
             }
         }
         return dp[0];
+    }
+};
+
+// Step 1: TLE
+class Solution {
+public:
+    int DFS(vector<int>& prices, int cur) {
+        int n = prices.size();
+        if(cur >= n)
+            return 0;
+
+        int from = cur + 1;
+        int to = from + cur + 1;
+
+        int minCoins = 1e9;
+        for(int j = from; j <= min(n, to); j++)
+            minCoins = min(minCoins, DFS(prices, j));
+
+        return prices[cur] + minCoins;
+    }
+
+    int minimumCoins(vector<int>& prices) {
+        int n = prices.size();
+        return DFS(prices, 0);
     }
 };
