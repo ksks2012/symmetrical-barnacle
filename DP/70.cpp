@@ -30,3 +30,35 @@ public:
         return b;
     }
 };
+
+class Solution {
+public:
+    int climbStairs(int n) {
+        if(n < 0)
+            return 1;
+        if(n <= 2)
+            return n;
+
+        return climbStairs(n - 1) + climbStairs(n - 2);
+    }
+};
+
+class Solution {
+public:
+    int DFS(int n, vector<int> &memo) {
+        if(n < 0)
+            return 1;
+        if(n <= 2)
+            return n;
+        if(memo[n] != -1)
+            return memo[n];
+
+        memo[n] = DFS(n - 1, memo) + DFS(n - 2, memo);
+        return memo[n];
+    }
+
+    int climbStairs(int n) {
+        vector<int> memo(n + 1, -1);
+        return DFS(n, memo);
+    }
+};
