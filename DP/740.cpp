@@ -4,7 +4,7 @@ class Solution {
 public:
     int deleteAndEarn(vector<int>& nums) {
         vector<int> tmp(10002);
-        for(int i = 0;i < nums.size(); i++) {
+        for(int i = 0; i < nums.size(); i++) {
             tmp[nums[i]] += nums[i];
         }
         vector<int> dp(10002);
