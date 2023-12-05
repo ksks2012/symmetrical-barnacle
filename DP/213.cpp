@@ -62,3 +62,47 @@ public:
         return DFS(nums, memo_l, memo_nl, n - 1, true);
     }
 };
+
+class Solution {
+public:
+    int helper(vector<int>& nums, int start, int end) {  
+        int n = nums.size();
+        vector<int> dp(n + 2, 0);
+        for(int i = start; i <= end; i++) {
+            dp[i + 2] = max(dp[i] + nums[i], dp[i + 1]);
+        }
+        return dp[end + 2];
+    }
+
+    int rob(vector<int>& nums) {
+        int n = nums.size();
+        if(n == 1)
+            return nums[0];
+
+        return max(helper(nums, 0, n - 2), helper(nums, 1, n - 1));
+    }
+};
+
+class Solution {
+public:
+    int helper(vector<int>& nums, int start, int end) {  
+        int n = nums.size();
+        int f0 = 0;
+        int f1 = 0;
+
+        for(int i = start; i <= end; i++) {
+            int tmp = max(f0, f1 + nums[i]);
+            f0 = f1;
+            f1 = tmp;
+        }
+        return f1;
+    }
+
+    int rob(vector<int>& nums) {
+        int n = nums.size();
+        if(n == 1)
+            return nums[0];
+
+        return max(helper(nums, 0, n - 2), helper(nums, 1, n - 1));
+    }
+};
