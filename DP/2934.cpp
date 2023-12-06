@@ -37,7 +37,8 @@ public:
     }
     int minOperations(vector<int>& nums1, vector<int>& nums2) {
         n = nums1.size();
-        for (int i = 1; i <= n; i++) tmp1[i] = nums1[i - 1], tmp2[i] = nums2[i - 1];
+        for (int i = 1; i <= n; i++) 
+            tmp1[i] = nums1[i - 1], tmp2[i] = nums2[i - 1];
         int ans = min(status1(), status2());
         if (ans == INF) ans = -1;
         return ans;
