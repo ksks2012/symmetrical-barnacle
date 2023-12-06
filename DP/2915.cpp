@@ -81,3 +81,27 @@ public:
         return dp[n][target];
     }
 };
+
+// Space Optimization
+class Solution {
+public:
+    int lengthOfLongestSubsequence(vector<int>& nums, int target) {
+        int n = nums.size();
+        int max_len = 0;
+
+        int dp[target + 1];
+        memset(dp, -1, sizeof(dp));
+        dp[0] = 0; // Longest subsequence when the target sum is 0.
+
+        int sum = 0;
+        for(int i = 0; i < n; i++) {
+            sum = min(sum + nums[i], target);
+            for(int c = sum; c >= nums[i]; c--) {
+                if (c >= nums[i] && dp[c - nums[i]] != -1)
+                    dp[c] = max(1 + dp[c - nums[i]], dp[c]);
+            }
+        }
+        
+        return dp[target];
+    }
+};
