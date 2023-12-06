@@ -3,59 +3,55 @@
 // TLE
 class Solution {
 public:
-    int DFS(vector<int>& nums, int target, int cur_idx, int cur_len) {
-        if(target < 0)
-            return 0;
+    int DFS(vector<int>& nums, int target, int cur_idx) {
         if(cur_idx < 0) {
             if(target == 0)
-                return cur_len;
-            else
                 return 0;
+            else
+                return INT_MAX / 2 * -1;
         }
         if(target < nums[cur_idx])
-            return DFS(nums, target, cur_idx - 1, cur_len);
-        return max(DFS(nums, target, cur_idx - 1, cur_len), DFS(nums, target - nums[cur_idx], cur_idx - 1, cur_len + 1));
+            return DFS(nums, target, cur_idx - 1);
+        return max(DFS(nums, target, cur_idx - 1), DFS(nums, target - nums[cur_idx], cur_idx - 1) + 1);
     }
 
     int lengthOfLongestSubsequence(vector<int>& nums, int target) {
         int n = nums.size();
-        int ans = DFS(nums, target, n - 1, 0);
-        if(ans == 0)
+        int ans = DFS(nums, target, n - 1);
+        if(ans < 0)
             return -1;
         return ans;
     }
 };
 
-// TLE
+// memo
 class Solution {
 public:
-    int DFS(vector<int>& nums, int target, int cur_idx, int cur_len, vector<vector<vector<int>>>& memo) {
-        if(target < 0)
-            return 0;
+    int DFS(vector<int>& nums, int target, int cur_idx, vector<vector<int>> &memo) {
         if(cur_idx < 0) {
             if(target == 0)
-                return cur_len;
-            else
                 return 0;
+            else
+                return INT_MAX / 2 * -1;
         }
-        int &res = memo[target][cur_idx][cur_len];
-        if(res != -1) {
+        int &res = memo[target][cur_idx];
+        if(res != -1)
             return res;
-        }
         if(target < nums[cur_idx])
-            return res = DFS(nums, target, cur_idx - 1, cur_len, memo);
-        return res = max(DFS(nums, target, cur_idx - 1, cur_len, memo), DFS(nums, target - nums[cur_idx], cur_idx - 1, cur_len + 1, memo));
+            return res = DFS(nums, target, cur_idx - 1, memo);
+        return res = max(DFS(nums, target, cur_idx - 1, memo), DFS(nums, target - nums[cur_idx], cur_idx - 1, memo) + 1);
     }
 
     int lengthOfLongestSubsequence(vector<int>& nums, int target) {
         int n = nums.size();
-        vector<vector<vector<int>>> memo(target + 1, vector<vector<int>>(n + 1, vector<int>(n + 1, -1)));
-        int ans = DFS(nums, target, n - 1, 0, memo);
-        if(ans == 0)
+        vector<vector<int>> memo(target + 1, vector<int>(n + 1, -1));
+        int ans = DFS(nums, target, n - 1, memo);
+        if(ans < 0)
             return -1;
         return ans;
     }
 };
+
 
 
 class Solution {
