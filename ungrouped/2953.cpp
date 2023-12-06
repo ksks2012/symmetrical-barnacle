@@ -90,3 +90,42 @@ public:
         return ans;
     }
 };
+
+// From https://leetcode.cn/problems/count-complete-substrings/solutions/2551743/bao-li-hua-chuang-mei-ju-chuang-kou-nei-31j5m/
+class Solution {
+    int f(string s, int k) {
+        int res = 0;
+        for (int m = 1; m <= 26 && k * m <= s.length(); m++) {
+            int cnt[26]{};
+            auto check = [&]() {
+                for (int i = 0; i < 26; i++) {
+                    if (cnt[i] && cnt[i] != k) {
+                        return;
+                    }
+                }
+                res++;
+            };
+            for (int right = 0; right < s.length(); right++) {
+                cnt[s[right] - 'a']++;
+                int left = right + 1 - k * m;
+                if (left >= 0) {
+                    check();
+                    cnt[s[left] - 'a']--;
+                }
+            }
+        }
+        return res;
+    }
+
+public:
+    int countCompleteSubstrings(string word, int k) {
+        int n = word.length();
+        int ans = 0;
+        for (int i = 0; i < n;) {
+            int st = i;
+            for (i++; i < n && abs(int(word[i]) - int(word[i - 1])) <= 2; i++);
+            ans += f(word.substr(st, i - st), k);
+        }
+        return ans;
+    }
+};
