@@ -12,7 +12,6 @@ public:
                 tmp += p[k];
             }
             return tmp;
-            return 0;
         }
         if(j < 0) {
             int tmp = 0;
@@ -20,7 +19,6 @@ public:
                 tmp += s[k];
             }
             return tmp;
-            return 0;
         }
         
         if(s[i] == p[j])
@@ -55,7 +53,6 @@ public:
                 tmp += p[k];
             }
             return tmp;
-            return 0;
         }
         if(j < 0) {
             int tmp = 0;
@@ -63,7 +60,6 @@ public:
                 tmp += s[k];
             }
             return tmp;
-            return 0;
         }
 
         int &res = memo[i][j];
