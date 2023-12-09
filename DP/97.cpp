@@ -105,37 +105,6 @@ public:
     }
 };
 
-// 2D array of DP
-class Solution {
-public:
-    bool isInterleave(string s1, string s2, string s3) {
-        int x = s1.size();
-        int y = s2.size();
-        int z = s3.size();
-        if(x + y != z)
-            return false;
-        vector<vector<bool>> dp(x + 1, vector<bool>(y + 1, false));
-        dp[0][0] = true;
-
-        for(int i = 0; i < x; i++) {
-            dp[i + 1][0] = dp[i][0] && (s1[i] == s3[i]);
-        }
-
-        for(int j = 0; j < y; j++) {
-            dp[0][j + 1] = dp[0][j] && (s2[j] == s3[j]);
-        }
-
-        int k = 0;
-        for(int i = 0; i < x; i++) {
-            for(int j = 0; j < y; j++) {
-                k = i + j + 1;
-                dp[i + 1][j + 1] = (dp[i][j + 1] && (s1[i] == s3[k])) || (dp[i + 1][j] && s2[j] == s3[k]);
-            }
-        }
-        return dp[x][y];
-    }
-};
-
 // Space Optimization
 class Solution {
 public:
