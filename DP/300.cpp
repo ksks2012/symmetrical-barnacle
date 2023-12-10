@@ -95,3 +95,18 @@ public:
         return tmp.size();
     }
 };
+
+// https://leetcode.cn/problems/longest-increasing-subsequence/solutions/2147040/jiao-ni-yi-bu-bu-si-kao-dpfu-o1-kong-jia-4zma/
+class Solution {
+public:
+    int lengthOfLIS(vector<int> &nums) {
+        auto end = nums.begin();
+        for (int num : nums) {
+            auto it = lower_bound(nums.begin(), end, num);
+            *it = num;
+            if (it == end) 
+                ++end;
+        }
+        return end - nums.begin();
+    }
+};
