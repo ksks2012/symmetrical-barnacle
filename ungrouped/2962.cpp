@@ -2,25 +2,28 @@
 
 class Solution {
 public:
-    vector<int> getGoodIndices(vector<vector<int>>& v, int target) {
-        int m = v.size();
-        int n = v[0].size();
+    long long countSubarrays(vector<int>& nums, int k) {
+        int n = nums.size();
+        long long result = 0;
+        int mo = *max_element(nums.begin(), nums.end());
 
-        vector<int> ans;
+        vector<int> tmp;
 
-        for(int i = 0; i < m; i++) {
-            int a = 1;
-            for(int j = 0; j < v[i][1]; j++) {
-                a = (a * v[i][0]) % 10;
+        for(int i = 0; i < n; ++i) {
+            if(nums[i] == mo) {
+                tmp.push_back(i);
             }
-            int b = 1;
-            for(int j = 0; j < v[i][2]; j++) {
-                b = (b * a) % v[i][3];
-            }
-            if(b == target)
-                ans.push_back(i);
         }
+        
+        if(tmp.size() < k)
+            return 0;
 
-        return ans;
+        long long tag = 0;
+        for(int i = 0; i < tmp.size() - k + 1; ++i) {
+            if(i + k - 1 < n)
+                result += (tmp[i] - tag + 1) * (n - tmp[i + k - 1]);
+            tag = tmp[i] + 1;
+        }
+        return result;
     }
 };
