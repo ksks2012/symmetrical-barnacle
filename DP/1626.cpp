@@ -136,10 +136,6 @@ public:
         this->scores = scores;
         this->ages = ages;
 
-        // for(int i = 0; i < scores.size(); i++) {
-        //     cout << scores[i] << " " << ages[i] << endl;
-        // }
-
         vector<vector<int>> memo(n + 1, vector<int>(1001, -1));
 
         return DFS(0, 0, memo);
