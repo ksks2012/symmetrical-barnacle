@@ -60,7 +60,7 @@ public:
     int maxProfit(vector<int>& prices) {
         int n = prices.size();
         
-        vector<vector<int>> dp(n + 1, vector<int>(2, -1));
+        vector<vector<int>> dp(n + 1, vector<int>(2, 0));
         dp[0][0] = 0;
         dp[0][1] = -1 * INT_MAX / 2;
 
