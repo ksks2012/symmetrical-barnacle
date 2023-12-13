@@ -1,5 +1,65 @@
 #include "include.h"
 
+// DFS: TLE
+class Solution {
+public:
+    string s, t;
+    int m, n;
+
+    int DFS(int i, int j) {
+        if(j < 0)
+            return 1;
+        if(i < 0) 
+            return 0;
+
+        if(s[i] == t[j])
+            return DFS(i - 1, j - 1) + DFS(i - 1, j);
+
+        return DFS(i - 1, j);
+    }
+
+    int numDistinct(string s, string t) {
+        m = s.size();
+        n = t.size();
+        this->s = s;
+        this->t = t;
+
+        return DFS(m - 1, n - 1);
+    }      
+};
+
+class Solution {
+public:
+    string s, t;
+    int m, n;
+
+    int DFS(int i, int j, vector<vector<int>> &memo) {
+        if(j < 0)
+            return 1;
+        if(i < 0) 
+            return 0;
+
+        int &res = memo[i][j];
+        if(res != -1)
+            return res;
+
+        if(s[i] == t[j])
+            return res = DFS(i - 1, j - 1, memo) + DFS(i - 1, j, memo);
+
+        return res = DFS(i - 1, j, memo);
+    }
+
+    int numDistinct(string s, string t) {
+        m = s.size();
+        n = t.size();
+        this->s = s;
+        this->t = t;
+        vector<vector<int>> memo(m + 1, vector<int>(n + 1, -1));
+
+        return DFS(m - 1, n - 1, memo);
+    }      
+};
+
 class Solution {
 public:
     int numDistinct(string s, string t) {
