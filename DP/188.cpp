@@ -86,17 +86,17 @@ public:
         int n = prices.size();
         
         vector<vector<int>> dp(k + 2, vector<int>(2, INT_MIN / 2));
-        for(int j = 1; j < k + 2; j++) {
+        for(int j = 1; j <= k + 1; j++) {
             dp[j][0] = 0;
         }
         
         for(int i = 0; i < n; i++) {
-            for(int j = k + 2; j > 0; j--) {
+            for(int j = k + 1; j > 0; j--) {
                 dp[j][0] = max(dp[j][0], dp[j - 1][1] + prices[i]);
                 dp[j][1] = max(dp[j][1], dp[j][0] - prices[i]);
             }
 
         }
-        return dp[0][0];
+        return dp[k + 1][0];
     }
 };
