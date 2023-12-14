@@ -22,6 +22,34 @@ public:
     }
 };
 
+// DFS: TLE
+class Solution {
+public:
+    vector<int> nums;
+    int n;
+    long long DFS(int i, int odd) {
+        if(i < 0) {
+            if(odd)
+                return 0;
+            else
+                return nums[0];
+        }
+            
+        
+        if(odd) {
+            return max(DFS(i - 1, 0) - nums[i], DFS(i - 1, 1));
+        }
+        return max(DFS(i - 1, 1) + nums[i], DFS(i - 1, 0));
+    }
+
+    long long maxAlternatingSum(vector<int>& nums) {
+        int n = nums.size();
+        this->nums = nums;
+        return DFS(n - 1, 0);
+    }
+};
+
+
 // DFS with memory: TLE
 class Solution {
 public:
@@ -45,6 +73,36 @@ public:
         int n = nums.size();
         this->nums = nums;
         vector<vector<int>> memo(n + 1, vector<int>(n + 1, -1));
+        return DFS(n - 1, 0, memo);
+    }
+};
+
+class Solution {
+public:
+    vector<int> nums;
+    int n;
+    long long DFS(int i, int odd, vector<vector<int>> &memo) {
+        if(i < 0) {
+            if(odd)
+                return 0;
+            else
+                return nums[0];
+        }
+
+        int &res = memo[i][odd];
+        if(res != -1)
+            return res;    
+        
+        if(odd) {
+            return res = max(DFS(i - 1, 0, memo) - nums[i], DFS(i - 1, 1, memo));
+        }
+        return res = max(DFS(i - 1, 1, memo) + nums[i], DFS(i - 1, 0, memo));
+    }
+
+    long long maxAlternatingSum(vector<int>& nums) {
+        int n = nums.size();
+        this->nums = nums;
+        vector<vector<int>> memo(n + 1, vector<int>(2, -1));
         return DFS(n - 1, 0, memo);
     }
 };
