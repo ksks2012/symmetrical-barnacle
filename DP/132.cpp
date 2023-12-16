@@ -10,7 +10,7 @@ public:
             return;
         if(s[start] == s[end]) {
             pali_memo[start][end] = 1;
-            isPalindrome(start - 1,end + 1, pali_memo);
+            isPalindrome(start - 1, end + 1, pali_memo);
         }
     }
 
