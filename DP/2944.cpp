@@ -2,7 +2,6 @@
 
 // 26,18,6,12,49,7,45,45
 // fast IO
-// fast IO
 static int n=[](){
  
     std::ios::sync_with_stdio(false);
@@ -42,19 +41,21 @@ public:
 class Solution {
 private:
     int dp[1005];
-    int F(int i, int n, vector<int> &prices){
+    int n;
+    int DFS(int i, vector<int> &prices){
         if(i >= n) return 0;
         if(dp[i] != -1) 
             return dp[i];
         int minCoins = 1e9;
         for(int j = i + 1; j <= min(n, 2 * (i + 1)); j++) 
-            minCoins = min(minCoins, F(j, n, prices));
+            minCoins = min(minCoins, DFS(j, prices));
         return dp[i] = prices[i] + minCoins;
     }
 public:
     int minimumCoins(vector<int>& prices){
+        n = prices.size();
         memset(dp, -1, sizeof dp);
-        return F(0, prices.size(), prices);
+        return DFS(0, prices);
     }
 };
 
