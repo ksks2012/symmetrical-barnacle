@@ -1,5 +1,56 @@
 #include "include.h"
 
+// DFS 
+class Solution {
+ public:
+    int DFS(string& s, int i, int j) {
+        if (i >= j) 
+            return 1;
+        return s[i] == s[j] ? DFS(s, i + 1, j - 1) : 0;
+    }
+
+    int countSubstrings(string s) {
+        int count = 0;
+        for(int i = 0; i < s.size(); ++i) {
+            for(int j = i; j < s.size(); ++j) {
+                count += DFS(s, i, j);
+            }
+        }
+        return count;
+    }
+};
+
+// DFS with memory
+class Solution {
+ public:
+    int DFS(string& s, int i, int j, vector<vector<int>> &memo) {
+        if (i >= j) 
+            return 1;
+        
+        int &res = memo[i][j];
+
+        if(res != -1 && s[i] == s[j])
+            return res;
+        else if (s[i] == s[j])
+            return res = DFS(s, i + 1, j - 1, memo);
+
+        return 0;
+    }
+
+    int countSubstrings(string s) {
+        int n = s.size();
+        int count = 0;
+        vector<vector<int>> memo(n + 1, vector<int>(n + 1, -1));
+        for(int i = 0; i < s.size(); ++i) {
+            for(int j = i; j < s.size(); ++j) {
+                count += DFS(s, i, j, memo);
+            }
+        }
+        return count;
+    }
+};
+
+
 class Solution {
  public:
     int countSubstrings(string s) {
