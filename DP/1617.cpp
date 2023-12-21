@@ -21,6 +21,7 @@ public:
     }
 
     void helper(int i) {
+        // reset status
         if (i == n) {
             for (int v = 0; v < n; ++v)
                 if (in_set[v]) {
