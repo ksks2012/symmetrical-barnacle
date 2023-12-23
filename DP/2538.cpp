@@ -7,14 +7,14 @@ public:
     vector<int> price;
     vector<vector<int>> tree;
 
-    PAIR_LL DFS(int x, int parent) {
-        long long p = price[x];
-        long long max_s1 = p;
+    PAIR_LL DFS(int cur, int parent) {
+        long long p = price[cur];
+        long long max_s1 = p; // with node
         long long max_s2 = 0;
 
-        for(int y: tree[x]) {
+        for(int y: tree[cur]) {
             if(y != parent) {
-                auto [s1, s2] = DFS(y, x);
+                auto [s1, s2] = DFS(y, cur);
                 // Maximum leaf path sum in front + current non-leaf path sum
                 // Maximum non-leaf path sum + current leaf path sum 
                 ans = max(ans, max(max_s1 + s2, max_s2 + s1));
