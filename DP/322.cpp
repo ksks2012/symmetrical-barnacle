@@ -88,9 +88,7 @@ public:
 
         for(int i = 0; i < n; i++) {
             for(int c = 0; c < target + 1; c++) {
-                if(c < nums[i])
-                    dp[c] = dp[c];
-                else
+                if(c >= nums[i])
                     dp[c] = min(dp[c], dp[c - nums[i]] + 1);
             }
         }
