@@ -38,6 +38,11 @@ public:
 
     int findTargetSumWays(vector<int>& nums, int target) {
         int n = nums.size();
+        // p
+        // s - p
+        // p - (s - p) = t
+        // 2p = s + t
+        // p = (s + t) // 2
         for(int i = 0; i < n; i++) {
             target += nums[i];
         }
