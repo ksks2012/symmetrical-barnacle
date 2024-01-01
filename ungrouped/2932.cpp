@@ -11,7 +11,7 @@ public:
             for(int j = 0; j < m; j++) {
                 int tmp = nums[i] ^ nums[j];
                 if(abs(nums[i] - nums[j]) <= min(nums[i], nums[j]))
-                max_num = max(max_num, tmp);
+                    max_num = max(max_num, tmp);
             }
         }
 
