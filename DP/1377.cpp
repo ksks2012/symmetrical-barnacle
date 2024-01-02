@@ -59,15 +59,15 @@ public:
     int target;
     double ans = 0;
     vector<vector<int>> graph;
-    int DFS(int x, int fa, int left_t, long long prod) {
-        if (x == target && (left_t == 0 || graph[x].size() == 1)) {
+    int DFS(int x, int parent, int left_time, long long prod) {
+        if (x == target && (left_time == 0 || graph[x].size() == 1)) {
             ans = 1.0 / prod;
             return true;
         }
-        if (x == target || left_t == 0) 
+        if (x == target || left_time == 0) 
             return false;
         for (int y: graph[x])  
-            if (y != fa && DFS(y, x, left_t - 1, prod * (graph[x].size() - 1)))
+            if (y != parent && DFS(y, x, left_time - 1, prod * (graph[x].size() - 1)))
                 // find target
                 return true;
         // not find target
