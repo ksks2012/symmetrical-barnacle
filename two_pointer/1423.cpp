@@ -16,7 +16,6 @@ public:
         int left = 0;
         for(int i = 0; i < n; i++) {
             cur += cardPoints[i];
-            // cout << i << " " << left << " " << cur << endl;
             while(i - left + 1 > target) {
                 cur -= cardPoints[left];
                 left++;
