@@ -28,3 +28,28 @@ public:
         return max(maxTwoNoOverlap(nums, L, M), maxTwoNoOverlap(nums, M, L));
     }
 };
+
+// prefix sum
+class Solution {
+public:
+    int n;
+    vector<int> prefixSum;
+    int maxSum(int L, int M) {
+        int maxL = 0, ans = 0;
+        for(int i = L + M; i <= n; ++i) {
+            maxL = max(maxL, prefixSum[i - M] - prefixSum[i - L - M]);
+            ans = max(ans, maxL + prefixSum[i] - prefixSum[i - M]);
+        }
+ 
+        return ans;
+    }
+
+    int maxSumTwoNoOverlap(vector<int> &nums, int L, int M) {
+        n = nums.size();
+        prefixSum = vector<int>(n + 1, 0);
+        for(int i = 0; i < n; ++i) {
+            prefixSum[i + 1] = prefixSum[i] + nums[i];
+        }
+        return max(maxSum(L, M), maxSum(M, L));
+    }
+};
