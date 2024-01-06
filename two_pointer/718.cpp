@@ -48,14 +48,35 @@ public:
         int m = nums1.size();
         int n = nums2.size();
 
+        /*
+        A:           |*|*|*|*|
+        B: |*|*|*|*|*|*|
+                 ↓
+        A:       |*|*|*|*|
+        B: |*|*|*|*|*|*|
+         */
         for(int i = 1; i <= m; i++) {
             maxi = max(maxi, maxLen(nums1, 0, nums2, n - i, i));
         }
 
+         /*
+        A:     |*|*|*|*|
+        B: |*|*|*|*|*|*|
+                 ↓
+        A: |*|*|*|*|
+        B: |*|*|*|*|*|*|
+         */
         for(int j = n - m; j >= 0; j--) {
             maxi = max(maxi, maxLen(nums1, 0, nums2, j, m));
         }
 
+        /*
+        A: |*|*|*|*|
+        B:   |*|*|*|*|*|*|
+                 ↓
+        A: |*|*|*|*|
+        B:       |*|*|*|*|*|*|
+         */
         for(int i = 1; i < m; i++) {
             maxi = max(maxi, maxLen(nums1, i, nums2, 0, m - i));
         }
