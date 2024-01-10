@@ -39,3 +39,30 @@ public:
         return ans;
     }
 };
+
+// endlesscheng
+class Solution {
+public:
+    int maximumLength(string s) {
+        vector<int> groups[26];
+        int cnt = 0, n = s.length();
+        for (int i = 0; i < n; i++) {
+            cnt++;
+            if (i + 1 == n || s[i] != s[i + 1]) {
+                groups[s[i] - 'a'].push_back(cnt); // count
+                cnt = 0;
+            }
+        }
+
+        int ans = 0;
+        for (auto &a: groups) {
+            if (a.empty()) 
+                continue;
+            sort(a.rbegin(), a.rend());
+            a.push_back(0);
+            a.push_back(0); // assume two empty string
+            ans = max({ans, a[0] - 2, min(a[0] - 1, a[1]), a[2]});
+        }
+        return ans ? ans : -1;
+    }
+};
