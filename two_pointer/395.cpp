@@ -15,17 +15,25 @@ public:
                 // expand the sliding window
                 if (unique <= currUnique) {
                     idx = s[windowEnd] - 'a';
-                    if (countMap[idx] == 0) unique++;
+                    if (countMap[idx] == 0) {
+                        unique++;
+                    }    
                     countMap[idx]++;
-                    if (countMap[idx] == k) countAtLeastK++;
+                    if (countMap[idx] == k) {
+                        countAtLeastK++;
+                    }
                     windowEnd++;
                 }
                 // shrink the sliding window
                 else {
                     idx = s[windowStart] - 'a';
-                    if (countMap[idx] == k) countAtLeastK--;
+                    if (countMap[idx] == k) {
+                        countAtLeastK--;
+                    }
                     countMap[idx]--;
-                    if (countMap[idx] == 0) unique--;
+                    if (countMap[idx] == 0) {
+                        unique--;
+                    }
                     windowStart++;
                 }
                 if (unique == currUnique && unique == countAtLeastK)
