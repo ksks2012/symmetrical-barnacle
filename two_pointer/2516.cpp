@@ -14,13 +14,13 @@ public:
             return -1;
         }
 
-        for(int i = 0, j = 0; i < n; i++) {
-            if(--tmp[s[i] - 'a'] < k) {
-                while(tmp[s[i] - 'a'] < k) {
-                    ++tmp[s[j++] - 'a'];
+        for(int right = 0, left = 0; right < n; right++) {
+            if(--tmp[s[right] - 'a'] < k) {
+                while(tmp[s[right] - 'a'] < k) {
+                    ++tmp[s[left++] - 'a'];
                 }
             }
-            ans = max(ans, i - j + 1);
+            ans = max(ans, right - left + 1);
         }
         return n - ans;
     }
