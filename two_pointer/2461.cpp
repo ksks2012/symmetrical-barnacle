@@ -17,7 +17,6 @@ public:
                 left++;
             }
             if(i - left + 1 == k) {
-                cout << i << " " << left << endl;
                 ans = max(ans, cur);
             }
         }
