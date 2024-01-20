@@ -9,11 +9,10 @@ public:
         vector<int> res;
         
         for(int i = 0; i < n; i++) {
-            
-            if(nums[i] < 0) ms.insert(nums[i]);
-            
+            if(nums[i] < 0) 
+                ms.insert(nums[i]);
+
             if(i - j + 1 == k) {
-                
                 if(ms.size() < x)
                     res.push_back(0);
                 else 
