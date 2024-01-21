@@ -16,20 +16,14 @@ public:
         }
         graph[n][n] = 0;
 
-        int i = 0, j = 0, k = 0;
-        for (k = 0; k < n + 1; k++) {
-            // Pick all vertices as source one by one
-            for (i = 0; i < n + 1; i++) {
-                // Pick all vertices as destination for the
-                // above picked source
-                for (j = 0; j < n + 1; j++) {
-                    // If vertex k is on the shortest path from
-                    // i to j, then update the value of
-                    // graph[i][j]
-                    if (graph[i][j] > (graph[i][k] + graph[k][j])
-                        && (graph[k][j] != INF
-                            && graph[i][k] != INF))
-                        graph[i][j] = graph[i][k] + graph[k][j];
+            for (int k = 0; k <= n; k++) {
+            for (int i = 0; i <= n; i++) {
+                if (graph[i][k] != INF) {
+                    for (int j = 0; j <= n; j++) {
+                        if (graph[k][j] != INF) {
+                            graph[i][j] = min(graph[i][j], graph[i][k] + graph[k][j]);
+                        }
+                    }
                 }
             }
         }
