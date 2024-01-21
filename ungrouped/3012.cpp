@@ -13,3 +13,16 @@ public:
         return ans;
     }
 };
+
+// lee
+class Solution {
+public:
+    int minimumArrayLength(vector<int>& nums) {
+        int v = *min_element(nums.begin(), nums.end());
+        for (int x : nums)
+            if (x % v > 0)
+                return 1;
+        int tmp = count(nums.begin(), nums.end(), v);
+        return (tmp + 1) / 2;
+    }
+};
