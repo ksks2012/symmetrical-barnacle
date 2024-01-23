@@ -32,13 +32,13 @@ public:
 class Solution {
 public:
     long long countSubarrays(vector<int>& nums, int k) {
-        int a = *max_element(nums.begin(), nums.end()), n = nums.size(), cur = 0, i = 0;
+        int mo = *max_element(nums.begin(), nums.end()), n = nums.size(), cur = 0, left = 0;
         long long res = 0;
-        for (int j = 0; j < n; ++j) {
-            cur += nums[j] == a;
+        for (int right = 0; right < n; ++right) {
+            cur += nums[right] == mo;
             while (cur >= k)
-                cur -= nums[i++] == a;
-            res += i;
+                cur -= nums[left++] == mo;
+            res += left;
         }
         return res;
     }
