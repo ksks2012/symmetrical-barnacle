@@ -4,6 +4,7 @@
 class Solution {
 public:
     int shipWithinDays(vector<int>& weights, int days) {
+        // [max(A), sum(A)]
         int left = 0, right = 25000000;
         for(int w : weights) {
             left = max(left, w);
