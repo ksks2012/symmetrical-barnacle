@@ -7,9 +7,7 @@ public:
         int left = 1;
         int right = n - 1;
         while(left < right) {
-            cout << left << " " << right << endl;
-            // int mid = (left + (right - left)) / 2;
-            int mid = (left + right) / 2;
+            int mid = left + (right - left) / 2;
             int count = 0;
             for(int i = 0; i < n; i++) {
                 if(nums[i] <= mid) {
