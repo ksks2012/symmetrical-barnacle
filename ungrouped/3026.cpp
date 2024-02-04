@@ -19,6 +19,7 @@ public:
                 ans = max(ans, sum[i + 1] - sum[it->second]);
             if (auto it = m.find(nums[i] + k); it != end(m))
                 ans = max(ans, sum[i + 1] - sum[it->second]);
+            // First find or smallest matching
             if (auto it = m.find(nums[i]); it == end(m) || sum[i] - sum[it->second] <= 0)
                 m[nums[i]] = i;
         }
