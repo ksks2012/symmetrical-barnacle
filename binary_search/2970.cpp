@@ -40,10 +40,12 @@ public:
     int incremovableSubarrayCount(vector<int>& nums) {
         int n = nums.size();
         int i = 0;
+        // left
         for(; i < n - 1; i++ ) {
             if(nums[i + 1] <= nums[i]) 
                 break;
         }
+        // right
         int j = n - 1;
         for(; j > 0; j--) {
             if(nums[j - 1] >= nums[j]) 
