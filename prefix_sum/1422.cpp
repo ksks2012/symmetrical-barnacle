@@ -18,7 +18,6 @@ public:
             if(s[n - 1 - i] == '1') {
                 cur_one++;
             }
-            // one[n - 1 - i] = cur_one;
             sum[n - 1 - i] += cur_one;
         }
         return *max_element(sum.begin(), sum.end());
