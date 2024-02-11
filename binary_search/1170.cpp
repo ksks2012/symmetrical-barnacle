@@ -5,8 +5,9 @@ public:
     int helper(string s) {
         char ch = s[0];
         for(int i = 1; i < s.size(); i++) {
-            ch = min(ch,s[i]);
+            ch = min(ch, s[i]);
         }
+        
         int count = 0;
         for(int i = 0; i < s.size(); i++) {
             if(s[i] == ch) {
