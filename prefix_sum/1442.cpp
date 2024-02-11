@@ -20,3 +20,17 @@ public:
         return ans;
     }
 };
+
+class Solution {
+public:
+    int countTriplets(vector<int>& nums) {
+        int n = nums.size(), ans = 0, prefix = 0;
+        unordered_map<int, int> count = {{0, 1}}, total;
+        for (int i = 0; i < n; ++i) {
+            prefix ^= nums[i];
+            ans += count[prefix]++ * i - total[prefix];
+            total[prefix] += i + 1;
+        }
+        return ans;
+    }
+};
