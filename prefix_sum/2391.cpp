@@ -12,7 +12,9 @@ public:
                     s.insert(c);
                 }
             }
+            // each garbage need 1 min
             ans += garbage[i].size();
+            // had class of garbage
             ans += i > 0 ? s.size() * travel[i - 1] : 0;
         }
         return ans;
