@@ -6,8 +6,6 @@ public:
         
         if(v != 0 && c != 0 && v == c && (v * c) % k == 0) {
             ans++;
-            cout << cur << " " << v << " " << c << endl;
-            cout << cur_str << endl;
         }
         if(cur == s.size())
             return;
@@ -25,9 +23,7 @@ public:
         int consonants = 0;
 
         int ans = 0;
-        // for(int i = 0; i < s.size(); i++) {
         bc(s, ans, k, 0, 0, 0, "");
-        // }
         
         return ans;
     }
