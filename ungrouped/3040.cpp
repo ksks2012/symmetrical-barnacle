@@ -33,6 +33,7 @@ public:
     }
 };
 
+// With memory
 class Solution {
 public:
     vector<int> A;
