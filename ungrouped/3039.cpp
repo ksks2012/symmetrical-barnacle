@@ -46,10 +46,12 @@ public:
             maxi = max(maxi, tmp[i]);
         }
 
+        // Remove util maxi char remaining 1
         for(int i = 0; i < 26; i++) {
             tmp[i] -= (maxi - 1);
         }
     
+        // Rebuild result string by original order
         string ans = "";
         for(int i = s.size() - 1; i >= 0; i--) {
             if(tmp[s[i] - 'a'] == 1) {
