@@ -34,6 +34,8 @@ public:
                     int tmp = get_sum(i + k, j + k, sum) - get_sum(i + k, j - 1, sum) - get_sum(i - 1, j + k, sum) + get_sum(i - 1, j - 1, sum);
                     if(tmp <= threshold) {
                         maxi = max(maxi, k + 1);
+                    } else {
+                        break;
                     }
                 }
             }
