@@ -51,3 +51,22 @@ public:
         return ans;
     }
 };
+
+// Binary Search Solution
+class Solution {
+public:
+    vector<int> platesBetweenCandles(string s, vector<vector<int>>& queries) {
+        vector<int> candle, res;
+        for (int i = 0; i < s.size(); ++i) {
+            if (s[i] == '|')
+                candle.push_back(i);
+        }
+            
+        for (int q = 0; q < queries.size(); ++q) {
+            int i = lower_bound(candle.begin(), candle.end(), queries[q][0]) - candle.begin();
+            int j = upper_bound(candle.begin(), candle.end(), queries[q][1]) - candle.begin() - 1;
+            res.push_back(i < j ? (candle[j] - candle[i]) - (j - i) : 0);
+        }
+        return res;
+    }
+};
