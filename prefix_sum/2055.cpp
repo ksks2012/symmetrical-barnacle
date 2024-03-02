@@ -39,13 +39,13 @@ public:
             int l = q[0];
             int r = q[1];
 
-            int i = next[l];
-            int j = prev[r];
+            int cur_next = next[l];
+            int cur_prev = prev[r];
 
-            if (j <= i || j == n || i == n) {
+            if (cur_prev <= cur_next || cur_prev == n || cur_next == n) {
                 ans.push_back(0);
             } else {
-                ans.push_back(prefixSum[j] - prefixSum[i]);
+                ans.push_back(prefixSum[cur_prev] - prefixSum[cur_next]);
             }
         }
         return ans;
