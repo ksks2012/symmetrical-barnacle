@@ -8,15 +8,17 @@ public:
         int sum = 0, right = -1, ans = 0;
         for (int i = 0; i < n; ++i) {
             sum += nums[i];
+            // sum - target
             if (dp.count(sum - target)) {
                 int left = dp[sum - target];
                 if (right <= left) {
                     ++ans;
+                    // follow minimum right index
+                    // update right
                     right = i;
                 }
             }
             dp[sum] = i;
-            cout << sum << " " << right << " " << sum - target << endl;
         }
         return ans;
     }
