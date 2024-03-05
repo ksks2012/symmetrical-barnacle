@@ -9,10 +9,10 @@ public:
 
         int cur = 1;
         pre[0] = 1;
+        // From left to right record repeating of increasement
         for(int i = 1; i < n; i++) {
             if(security[i] <= security[i - 1]) {
                 cur++;
-                
             } else {
                 cur = 1;
             }
@@ -21,6 +21,7 @@ public:
 
         cur = 1;
         suf[n - 1] = 1;
+        // From right to left record repeating of decreasement
         for(int i = n - 2; i >= 0; i--) {
             if(security[i] <= security[i + 1]) {
                 cur++;
@@ -30,6 +31,7 @@ public:
             suf[i] = cur;
         }
 
+        // Check with time
         for(int i = 0; i < n; i++) {
             if(pre[i] - 1 >= time && suf[i] - 1 >= time)
                 ans.push_back(i);
