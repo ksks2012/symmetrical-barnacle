@@ -6,12 +6,13 @@ public:
         queue<TreeNode*> q;
         q.push(root);
         int i = 0, f = 0;
-        while(!q.empty()){
+        while(!q.empty()) {
             auto node = q.front();
             q.pop();
             if(f && node != NULL) 
                 return false;
-            if(node == NULL){
+            // flag that record left node is exist or not
+            if(node == NULL) {
                 f = 1;
                 continue;
             }
