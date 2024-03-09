@@ -38,12 +38,15 @@ public:
         for (auto &[_, p] : pos) {
             long sum = 0L;
             // sum of first interval in pair
-            for (int i : p) 
+            for (int i : p) {
                 sum += i - p[0];
+            }
             ans[p[0]] = sum;
-            for (int i = 1, n = p.size(); i < n; ++i)
+            for (int i = 1, n = p.size(); i < n; ++i) {
                 // calculate sum of next interval in next pair
+                // i * (p[i] − p[i − 1]) − (n − i) * (p[i] − p[i − 1])
                 ans[p[i]] = sum += (2L * i - n) * (p[i] - p[i - 1]);
+            }
         }
         return ans;
     }
