@@ -22,3 +22,29 @@ public:
         return ans;
     }
 };
+
+// endlesscheng
+class Solution {
+public:
+    vector<long long> getDistances(vector<int> &arr) {
+        unordered_map<int, vector<int>> pos;
+        for (int i = 0; i < arr.size(); ++i) {
+            // record idx of same element
+            pos[arr[i]].push_back(i);
+        }
+
+        vector<long long> ans(arr.size());
+        // for all pair
+        for (auto &[_, p] : pos) {
+            long sum = 0L;
+            // sum of first interval in pair
+            for (int i : p) 
+                sum += i - p[0];
+            ans[p[0]] = sum;
+            for (int i = 1, n = p.size(); i < n; ++i)
+                // calculate sum of next interval in next pair
+                ans[p[i]] = sum += (2L * i - n) * (p[i] - p[i - 1]);
+        }
+        return ans;
+    }
+};
