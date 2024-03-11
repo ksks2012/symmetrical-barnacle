@@ -9,7 +9,7 @@ public:
         int first_neg = -2;
         int neg = 0;
         for(int i = 0; i < n; i++) {
-            // reset
+            // reset if nums[i] equal to 0
             if(nums[i] == 0) {
                 neg = 0;
                 start = i;
