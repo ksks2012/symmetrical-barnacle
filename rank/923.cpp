@@ -20,8 +20,10 @@ public:
                     continue;
                 }
                 if(i == j && j == k) {
+                    // C^(m[i])_3
                     ans = (ans + m[i] * (m[i] - 1) * (m[i] - 2) / 6) % MOD;
                 } else if(i == j && j != k) {
+                    // C^(m[i])_2 * m[k]
                     ans = (ans + m[i] * (m[i] - 1) / 2 * m[k]) % MOD;
                 } else if(i < j && j < k) {
                     ans = (ans + m[i] * m[j] * m[k]) % MOD;
