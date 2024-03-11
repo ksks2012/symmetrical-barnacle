@@ -3,9 +3,11 @@ class Solution:
     def shortestSubstrings(self, arr: List[str]) -> List[str]:
         self.m = {}
         sub = []
+        # Count substrings
         for s in arr:
             sub.append(self.cut(s))
 
+        # Find shortest substring that doesn't exist in other words
         ans = [""] * len(arr)
         for i in range(len(sub)):
             for j in range(len(sub[i])):
@@ -25,6 +27,7 @@ class Solution:
                 results.append(tmp)
                 if tmp not in self.m:
                     self.m[tmp] = 0
+                # Ignore substring with self repeating
                 if tmp not in flag:
                     self.m[tmp] += 1
                     flag.add(tmp)
