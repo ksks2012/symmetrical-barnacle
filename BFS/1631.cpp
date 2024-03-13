@@ -22,6 +22,7 @@ public:
             if (x == rows - 1 && y == cols - 1) 
                 return effort;
             
+            // Try 4 ways
             for (auto& dir : directions) {
                 int nx = x + dir[0], ny = y + dir[1];
                 if (nx >= 0 && nx < rows && ny >= 0 && ny < cols) {
