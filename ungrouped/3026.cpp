@@ -8,20 +8,21 @@ public:
         vector<long long> sum(n + 1, 0);
         long long tmp = 0;
         unordered_map<int, int> m;
-        for(int i = 0; i < n; i++) {
-            tmp += nums[i];
-            sum[i + 1] = tmp;
-        }
 
         long long ans = LLONG_MIN;
         for (int i = 0; i < n; ++i) {
+            tmp += nums[i];
+            sum[i + 1] = tmp;
+            // Looking for nums[i] +- k
             if (auto it = m.find(nums[i] - k); it != end(m))
                 ans = max(ans, sum[i + 1] - sum[it->second]);
             if (auto it = m.find(nums[i] + k); it != end(m))
                 ans = max(ans, sum[i + 1] - sum[it->second]);
             // First find or smallest matching
-            if (auto it = m.find(nums[i]); it == end(m) || sum[i] - sum[it->second] <= 0)
+            if (auto it = m.find(nums[i]); it == end(m) || sum[i] - sum[it->second] <= 0) {
+                // Kadane Algorithm
                 m[nums[i]] = i;
+            }
         }
         if(ans == LLONG_MIN)
             return 0;
