@@ -16,7 +16,9 @@ public:
             return;
         }
 
+        // if limit > 2, change to loop
         DFS(toppingCosts, idx + 1, cur_cost + toppingCosts[idx] * 2, ans, target);
+        
         DFS(toppingCosts, idx + 1, cur_cost + toppingCosts[idx], ans, target);
         DFS(toppingCosts, idx + 1, cur_cost, ans, target);
     }
