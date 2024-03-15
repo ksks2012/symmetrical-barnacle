@@ -13,8 +13,10 @@ public:
 
         for (auto it = s.rbegin(); it != s.rend(); ++it) {
             for (auto cnt = 0; cnt < it->first; ++cnt, pos += 2) {
-                if (pos >= barcodes.size()) pos = 1;
-                    barcodes[pos] = it->second;
+                if (pos >= barcodes.size()) {
+                    pos = 1;
+                }
+                barcodes[pos] = it->second;
             }
         }
         return barcodes;
