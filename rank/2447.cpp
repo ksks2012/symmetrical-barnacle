@@ -23,7 +23,7 @@ public:
         int n = nums.size();
         int res = 0;
         unordered_map<int, int> gcds;
-        for (int i = 0; i < b; ++i) {
+        for (int i = 0; i < n; ++i) {
             unordered_map<int, int> gcds1;
             if (nums[i] % k == 0) {
                 ++gcds[nums[i]];
