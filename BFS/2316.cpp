@@ -28,7 +28,7 @@ public:
             if(!visited[i]) {
                 long count = 0;
                 DFS(graph, i, visited, count);
-               tmp.push_back(count);
+                tmp.push_back(count);
             }
         }
         int total = 0;
