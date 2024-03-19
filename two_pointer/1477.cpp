@@ -9,19 +9,20 @@ public:
         dp[0] = size + 1;
 
         for (right = 0; right < size; ++right) {
+            // Find the sum of subarrays equal/smaller to the target
             sum += arr[right];
 
             while (sum > target) {
                 sum -= arr[left++];
             }
 
+            // Check length of subarray
             if (sum == target) {
                 int len = right - left + 1;
                 minSumOfLens = min(minSumOfLens, len + dp[left]);
                 // update dp
                 dp[right + 1] = min(dp[right], len);
-            }
-            else {
+            } else {
                 dp[right + 1] = dp[right];
             }
         }
