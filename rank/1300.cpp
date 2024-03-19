@@ -18,7 +18,7 @@ public:
         if(i == n) {
             return arr[n - 1];
         }
-
+        // done to consider the case where both lower ceiling and higher ceiling int is equally away from the target.
         return int(round((target - 0.0001) / (n - i)));
     }
 };
