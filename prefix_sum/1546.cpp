@@ -23,3 +23,24 @@ public:
         return ans;
     }
 };
+
+// Using set
+class Solution {
+public:
+    int maxNonOverlapping(vector<int>& nums, int target) {
+        int res = 0;
+        int sum = 0;
+        unordered_set<int> s;
+        s.insert(0);
+        for (auto i : nums) {
+            sum += i;
+            if (s.find(sum - target) != s.end()) {
+                s.clear();
+                sum = 0;
+                res++;
+            }
+            s.insert(sum);
+        }
+        return res;
+    }
+};
