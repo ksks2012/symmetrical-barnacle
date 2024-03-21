@@ -11,6 +11,7 @@ public:
             for (auto j = i; j < s.size(); ++j) {
                 int idx = s[j] - 'a';
                 maxi = max(maxi, ++count[idx]);
+                // Re-calculate mini
                 if (mini >= count[idx] - 1) {
                     mini = count[idx];
                     for (int k = 0; k < 26; ++k)
