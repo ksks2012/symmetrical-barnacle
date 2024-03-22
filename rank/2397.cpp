@@ -53,3 +53,34 @@ public:
         return ans;
     }
 };
+
+// endlesscheng
+// Gosper's Hack
+class Solution {
+public:
+    int maximumRows(vector<vector<int>> &mat, int cols) {
+        int m = mat.size(), n = mat[0].size();
+        vector<int> mask(m);
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                mask[i] |= mat[i][j] << j;
+            }
+        }
+
+        int ans = 0;
+        int subset = (1 << cols) - 1;
+        while (subset < (1 << n)) {
+            int coveredRows = 0;
+            for (int row : mask) {
+                if ((row & subset) == row) {
+                    coveredRows++;
+                }
+            }
+            ans = max(ans, coveredRows);
+            int lowbit = subset & -subset;
+            int x = subset + lowbit;
+            subset = ((subset ^ x) / lowbit >> 2) | x;
+        }
+        return ans;
+    }
+};
