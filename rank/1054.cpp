@@ -11,6 +11,7 @@ public:
         for (auto it = begin(m); it != end(m); ++it) 
             s.insert({ it->second, it->first });
 
+        // From largest to smallest frequencies
         for (auto it = s.rbegin(); it != s.rend(); ++it) {
             for (auto cnt = 0; cnt < it->first; ++cnt, pos += 2) {
                 if (pos >= barcodes.size()) {
