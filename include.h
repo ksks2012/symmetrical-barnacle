@@ -10,6 +10,7 @@
 #include <numeric>
 #include <bitset> 
 #include <queue>
+#include <ranges>
 
 using namespace std;
 

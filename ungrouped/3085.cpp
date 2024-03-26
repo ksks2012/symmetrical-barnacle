@@ -22,6 +22,7 @@ public:
             int num = freq[i]; 
             int count = 0;
 
+            // freq[i] + k
             for (int j = 0; j < freq.size(); j++) {
                 if (freq[j] - num > k) {
                     count += freq[j] - (num + k);
@@ -36,5 +37,28 @@ public:
         }
 
         return res;
+    }
+};
+
+// endlesscheng
+class Solution {
+public:
+    int minimumDeletions(string word, int k) {
+        int cnt[26]{};
+        for (char c: word) {
+            cnt[c - 'a']++;
+        }
+        ranges::sort(cnt);
+
+        int max_save = 0;
+        for (int i = 0; i < 26; i++) {
+            int sum = 0;
+            for (int j = i; j < 26; j++) {
+                // cnt[i] + k
+                sum += min(cnt[j], cnt[i] + k);
+            }
+            max_save = max(max_save, sum);
+        }
+        return word.length() - max_save;
     }
 };
