@@ -50,12 +50,13 @@ public:
             long long idx = it[0];
             long long k = it[1];
 
-            
-            if (st.find(idx)==st.end()) {
+            // idx has not marked before            
+            if (st.find(idx) == st.end()) {
                 st.insert(idx);
                 sum -= nums[idx];
             }
 
+            // remove k unmarked elements
             while(k > 0 && !pq.empty()){
                 long long val = pq.top().first;
                 long long idx2 = pq.top().second;
@@ -63,6 +64,7 @@ public:
                 
                 if(st.find(idx2) == st.end()){
                     st.insert(idx2);
+                    // Prefix Sum
                     sum -= val;
                     k--;
                 }
