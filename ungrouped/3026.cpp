@@ -31,6 +31,34 @@ public:
     }
 };
 
+// endlesscheng
+class Solution {
+public:
+    long long maximumSubarraySum(vector<int> &nums, int k) {
+        long long ans = LLONG_MIN, sum = 0;
+        unordered_map<int, long long> min_sum;
+        for (int x: nums) {
+            auto it = min_sum.find(x + k);
+            if (it != min_sum.end()) {
+                ans = max(ans, sum + x - it->second);
+            }
+
+            it = min_sum.find(x - k);
+            if (it != min_sum.end()) {
+                ans = max(ans, sum + x - it->second);
+            }
+
+            it = min_sum.find(x);
+            if (it == min_sum.end() || sum < it->second) {
+                min_sum[x] = sum;
+            }
+
+            sum += x;
+        }
+        return ans == LLONG_MIN ? 0 : ans;
+    }
+};
+
 // TLE
 class Solution {
 public:
