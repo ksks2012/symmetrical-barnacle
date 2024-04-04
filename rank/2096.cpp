@@ -1,20 +1,47 @@
 #include "include.h"
 
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
 class Solution {
 public:
-    int minimumBuckets(string hamsters) {
-        for (int i = 0; i < hamsters.size(); ++i) {
-            if (hamsters[i] == 'H') {
-                if (i > 0 && hamsters[i - 1] == 'F')
-                    continue;
-                if (i < hamsters.size() - 1 && hamsters[i + 1] == '.')
-                    hamsters[i + 1] = 'F';
-                else if (i > 0 && hamsters[i - 1] == '.')
-                    hamsters[i - 1] = 'F';
-                else
-                    return -1;
-            }
+    
+    
+    bool DFS(TreeNode* root, string &s, int& target) {
+        if(root->val == target) {
+            return true;
         }
-        return count(begin(hamsters), end(hamsters), 'F');
+        if(root->left && DFS(root->left, s, target)) {
+            s.push_back('L');
+        } else if(root->right && DFS(root->right, s, target)) {
+            s.push_back('R');
+        }
+
+        return !s.empty();
+    }
+    
+    string getDirections(TreeNode* root, int startValue, int destValue) {
+        string start = "";
+        string dest = "";
+        DFS(root, start, startValue);
+        DFS(root, dest, destValue); 
+
+        while (!start.empty() && !dest.empty() && start.back() == dest.back()) {
+            start.pop_back();
+            dest.pop_back();
+        }
+        string res = "";
+        res += string(start.size(), 'U');
+        res += string(rbegin(dest), rend(dest));
+
+        return res;    
     }
 };
