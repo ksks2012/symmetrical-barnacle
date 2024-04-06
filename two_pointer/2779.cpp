@@ -9,11 +9,11 @@ public:
         int maxi = 0;
         int left = 0;
         int target = 2 * k;
-        for(int i = 0; i < n; i++) {
-            while(nums[i] - nums[left] > target) {
+        for(int right = 0; right < n; right++) {
+            while(nums[right] - nums[left] > target) {
                 left++;
             }
-            maxi = max(maxi, i - left + 1);
+            maxi = max(maxi, right - left + 1);
         }
         return maxi;
     }
