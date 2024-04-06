@@ -13,7 +13,7 @@ public:
 
     long long minimumTime(vector<int>& time, int totalTrips) {
         long long low = 1;
-        long long high = INT_MAX;
+        long long high = 1e14;
 
         while(low < high) {
             long long mid = low + (high - low) / 2;
