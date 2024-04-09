@@ -5,7 +5,7 @@ public:
     int kthLargestValue(vector<vector<int>>& matrix, int k) {
         int m = matrix.size(),n = matrix[0].size();
         for(int i = 1; i < n; i++) {
-            matrix[0][i] ^=matrix[0][i - 1];
+            matrix[0][i] ^= matrix[0][i - 1];
         }
 
         for(int i = 1; i < m; i++) {
