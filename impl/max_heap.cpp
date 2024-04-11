@@ -56,10 +56,7 @@ vector<int> build_max_heap(vector<int>& vec) {
 void heap_sort(vector<int>& vec) {
     int cur_idx = vec.size() - 1;
     
-    while(true) {
-        if(cur_idx <= 0)
-            break;
-
+    while(cur_idx > 0) {
         // take the final element to the root and do heapify
         swap(vec[0], vec[cur_idx]);
         cur_idx--;
