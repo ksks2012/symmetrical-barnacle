@@ -36,8 +36,9 @@ public:
         while (k--) {
             int tmp = pq.top();
             pq.pop();
-            pq.push(tmp - tmp / 2);
-            res -= tmp / 2;
+            int diff = tmp / 2;
+            pq.push(tmp - diff);
+            res -= diff;
         }
         return res;
     }
