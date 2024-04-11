@@ -3,14 +3,11 @@
 void min_heapify_botton_up(vector<int> &vec) {
     // the index of new node, the latest one element in slice
     int new_ele_idx = vec.size() - 1;
+    // get the parent node index
+    int parent_idx = (new_ele_idx + 1) / 2 - 1;
 
-    while(true) {
-        // get the parent node index
-        int parent_idx = (new_ele_idx + 1) / 2 - 1;
-        // break if the node is to the top of heap
-        if(parent_idx < 0)
-            break;
-
+    // break if the node is to the top of heap
+    while(parent_idx >= 0) {
         // if parent node > the new node, swap
         if(vec[parent_idx] > vec[new_ele_idx]) {
             swap(vec[parent_idx], vec[new_ele_idx]);
@@ -18,6 +15,7 @@ void min_heapify_botton_up(vector<int> &vec) {
         } else {
             break;
         }
+        parent_idx = (new_ele_idx + 1) / 2 - 1;
     }
 
     return;
@@ -25,13 +23,9 @@ void min_heapify_botton_up(vector<int> &vec) {
 
 void min_heapify_top_down(vector<int> &vec, int last_idx) {
     int cur_idx = 0;
+    int child = 2 * cur_idx + 1;
 
-    while(true) {
-        int child = 2 * cur_idx + 1;
-        if(child > last_idx) {
-            break;
-        }
-
+    while(child <= last_idx) {
         if(child + 1 <= last_idx && vec[child] > vec[child + 1]) {
             child++;
         }
@@ -42,6 +36,7 @@ void min_heapify_top_down(vector<int> &vec, int last_idx) {
         } else {
             break;
         }
+        child = 2 * cur_idx + 1;
     }
 
     return;
