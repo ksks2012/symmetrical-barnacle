@@ -50,13 +50,13 @@ public:
             tmp.push_back({i, nums[i]});
 
             for(int j = (int)tmp.size() - 2; j >= 1; --j)
-                if(tmp[j].second == tmp[j+1].second)
-                    tmp[j].first = tmp[j+1].first;
+                if(tmp[j].second == tmp[j + 1].second)
+                    tmp[j].first = tmp[j + 1].first;
             tmp.erase(unique(tmp.begin(), tmp.end()), tmp.end());
 
             for(int j = 1; j < tmp.size(); ++j)
                 if(tmp[j].second == k)
-                    res += tmp[j].first - tmp[j-1].first;
+                    res += tmp[j].first - tmp[j - 1].first;
         }
 
         return res;
