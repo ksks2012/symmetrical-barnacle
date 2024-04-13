@@ -1,5 +1,8 @@
 #include "include.h"
 
+// DFs(i - 1, 1), DFS(i - 1, 0) - prices[i] - fee
+// DFS(i - 1, 0), DFS(i - 1, 1) + prices[i]
+
 // DFS: TLE
 class Solution {
 public:
