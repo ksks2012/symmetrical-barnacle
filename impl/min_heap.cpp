@@ -21,12 +21,12 @@ void min_heapify_botton_up(vector<int> &vec) {
     return;
 }
 
-void min_heapify_top_down(vector<int> &vec, int last_idx) {
+void min_heapify_top_down(vector<int> &vec, int move_idx) {
     int cur_idx = 0;
     int child = 2 * cur_idx + 1;
 
-    while(child <= last_idx) {
-        if(child + 1 <= last_idx && vec[child] > vec[child + 1]) {
+    while(child <= move_idx) {
+        if(child + 1 <= move_idx && vec[child] > vec[child + 1]) {
             child++;
         }
 
@@ -54,13 +54,13 @@ vector<int> build_min_heap(vector<int>& vec) {
 }
 
 void heap_sort(vector<int>& vec) {
-    int cur_idx = vec.size() - 1;
+    int move_idx = vec.size() - 1;
     
-    while(cur_idx > 0) {
+    while(move_idx > 0) {
         // take the final element to the root and do heapify
-        swap(vec[0], vec[cur_idx]);
-        cur_idx--;
-        min_heapify_top_down(vec, cur_idx);
+        swap(vec[0], vec[move_idx]);
+        move_idx--;
+        min_heapify_top_down(vec, move_idx);
     }
 }
 
