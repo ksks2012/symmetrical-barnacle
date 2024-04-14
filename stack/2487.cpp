@@ -44,3 +44,42 @@ public:
         return head->next && head->val < head->next->val ?  head->next : head;
     }
 };
+
+// Stack optimization
+class Solution {
+public:
+    ListNode* removeNodes(ListNode* head) {
+        ListNode tmp(INT_MAX);
+        vector<ListNode*> st{ &tmp };
+        for (auto p = head; p != nullptr; p = p->next) {
+            while (st.back()->val < p->val) 
+                st.pop_back();
+            st.back()->next = p;
+            st.push_back(p);
+        }
+        return tmp.next;
+    }
+};
+
+// Reverse
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode *cur = head, *prev = nullptr;
+        while (cur != nullptr) {
+            swap(cur->next, prev);
+            swap(prev, cur);
+        }
+        return prev;
+    }
+    ListNode* removeNodes(ListNode* head) {
+        head = reverseList(head);
+        for (auto p = head; p != nullptr && p->next != nullptr; ) {
+            if (p->val > p->next->val)
+                p->next = p->next->next;
+            else
+                p = p->next;
+        }
+        return reverseList(head);
+    }
+};
