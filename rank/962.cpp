@@ -32,3 +32,30 @@ public:
         return res;
     }
 };
+
+class Solution {
+public:
+    int maxWidthRamp(vector<int>& nums) {
+        vector<int> st;
+        int res = 0, n = nums.size();
+        
+        for(int i = 0; i < n; i++) {
+            if(st.empty() || nums[st.back()] > nums[i]) {
+                st.push_back(i);
+            } else {
+                int left = 0, right = st.size() - 1, mid = 0;
+                while(left < right) {
+                    mid = left + (right - left) / 2;
+                    if(nums[st[mid]] > nums[i]) {
+                        left = mid + 1;
+                    } else {
+                        right = mid;
+                    }
+                }
+                res = max(res, i - st[left]);
+            }
+        }
+
+        return res;
+    }
+};
