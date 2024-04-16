@@ -24,13 +24,13 @@ public:
             
             // Try 4 ways
             for (auto& dir : directions) {
-                int nx = x + dir[0], ny = y + dir[1];
-                if (nx >= 0 && nx < rows && ny >= 0 && ny < cols) {
-                    int new_effort = max(effort, abs(heights[x][y] - heights[nx][ny]));
+                int next_x = x + dir[0], next_y = y + dir[1];
+                if (next_x >= 0 && next_x < rows && next_y >= 0 && next_y < cols) {
+                    int new_effort = max(effort, abs(heights[x][y] - heights[next_x][next_y]));
                     // minimum effort
-                    if (new_effort < dist[nx][ny]) {
-                        dist[nx][ny] = new_effort;
-                        minHeap.emplace(new_effort, nx, ny);
+                    if (new_effort < dist[next_x][next_y]) {
+                        dist[next_x][next_y] = new_effort;
+                        minHeap.emplace(new_effort, next_x, next_y);
                     }
                 }
             }
