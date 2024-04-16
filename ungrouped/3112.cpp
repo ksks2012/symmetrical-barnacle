@@ -1,6 +1,7 @@
 #include "include.h"
 
 // TLE
+//Dijkstra’s Algorithm
 class Solution {
 public:
     vector<int> minimumTime(int n, vector<vector<int>>& edges, vector<int>& disappear) {
@@ -42,7 +43,7 @@ public:
     }
 };
 
-//Dijkstra’s Algorithm
+// Dijkstra’s Algorithm + memory
 class Solution {
 public:
     vector<int> minimumTime(int n, vector<vector<int>>& edges, vector<int>& disappear) {
@@ -66,6 +67,7 @@ public:
             auto [dist, node] = pq.top();
             pq.pop();
             
+            // disappear or visited
             if(disappear[node] <= dist || visited[node]) {
                 continue;
             }
@@ -78,6 +80,7 @@ public:
                 }
                 
                 if(res[next] == -1 || res[next] > dist + weight) {
+                    // update neighbors
                     res[next] = dist + weight;
                     pq.push({dist + weight, next});
                 }
