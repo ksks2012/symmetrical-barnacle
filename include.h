@@ -4,6 +4,7 @@
 #include <map>
 #include <unordered_map>
 #include <iostream>
+#include <iosfwd>
 #include <set>
 #include <unordered_set>
 #include <stack>
