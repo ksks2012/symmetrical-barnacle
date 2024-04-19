@@ -9,7 +9,9 @@ public:
         int ans = -1;
         while(right < n) {
             m[s[right]]++;
+            // max number of characters in the window currently
             tmp = max(tmp, m[s[right]]);
+            // limited by k
             if((right - left + 1) - tmp > k){
                 m[s[left]]--;
                 left++;
