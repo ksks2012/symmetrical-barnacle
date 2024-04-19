@@ -1,5 +1,6 @@
 #include "../include.h"
 
+// max(manager's employees) + informTime[manager]
 class Solution {
 private:
     int DFS(int manager, vector<int>& informTime, unordered_map<int, vector<int>>& adjList) {
