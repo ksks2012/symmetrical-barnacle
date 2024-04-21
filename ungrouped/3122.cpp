@@ -1,0 +1,47 @@
+#include "include.h"
+
+class Solution {
+public:
+    int m, n;
+
+    int DFS(vector<vector<int>> &freq, int cur, int prev, vector<vector<int>> &dp) {
+        if(cur == -1) {
+            return 0;
+        }
+        int &res = dp[cur][prev];
+        if(res != INT_MAX)
+            return res;
+
+        for(int i = 0; i < 10; i++) {
+            if(i == prev) {
+                continue;
+            }
+            int tmp = m - freq[cur][i];
+            res = min(res, tmp + DFS(freq, cur - 1, i, dp));
+        }
+        if(res == INT_MAX)
+            return 0;
+        return res;
+    }
+
+    int minimumOperations(vector<vector<int>>& grid) {
+        m = grid.size();
+        n = grid[0].size();
+
+        vector<vector<int>> freq(n, vector<int>(10, 0));
+        vector<vector<int>> dp(n, vector<int>(10, INT_MAX));
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                freq[j][grid[i][j]]++;
+            }
+        }
+
+        int res = INT_MAX;
+        for(int i = 0; i < 10; i++) {
+            res = min(res, m - freq[n - 1][i] + DFS(freq, n - 2, i, dp));
+        }
+        
+        return res;
+    }
+};
