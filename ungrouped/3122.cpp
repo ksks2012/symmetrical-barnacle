@@ -45,3 +45,20 @@ public:
         return res;
     }
 };
+
+class Solution {
+public:
+    int minimumOperations(vector<vector<int>>& grid) {
+        int m = grid.size(), n = grid[0].size(), dp[2][10] = {};
+        for (int i = 1; i <= n; ++i) {
+            int freq[10] = {};
+            for (int j = 0; j < m; ++j)
+                ++freq[grid[j][i - 1]];
+            for (int x = 0; x < 10; ++x)
+                for (int y = 0; y < 10; ++y)
+                    if (y != x)
+                        dp[i % 2][x] = max(dp[i % 2][x], freq[x] + dp[!(i % 2)][y]);
+        }
+        return n * m - *max_element(begin(dp[n % 2]), end(dp[n % 2]));
+    }
+};
