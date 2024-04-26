@@ -19,7 +19,9 @@ public:
                 TreeNode* curr = q.front(); q.pop();
                 if(cur_dist == K)
                     res.push_back(curr->val);
+
                 visited.insert(curr);
+
                 if(curr->left != NULL && visited.find(curr->left) == visited.end())
                     q.push(curr->left);
                 if(curr->right != NULL && visited.find(curr->right) == visited.end())
@@ -28,6 +30,7 @@ public:
                 if(parentMap[curr]!=NULL && visited.find(parentMap[curr]) == visited.end())
                     q.push(parentMap[curr]);
             }
+            
             cur_dist++;
             if(cur_dist > K)
                 break;
@@ -35,10 +38,8 @@ public:
         return res;
     }
     
-    void DFS(TreeNode* root, TreeNode* prev)
-    {
-        if(root!=NULL)
-        {
+    void DFS(TreeNode* root, TreeNode* prev) {
+        if(root != NULL) {
             parentMap[root] = prev;
             DFS(root->left, root);
             DFS(root->right, root);
