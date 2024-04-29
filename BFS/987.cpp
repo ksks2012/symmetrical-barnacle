@@ -25,23 +25,23 @@ public:
             m[x][y].insert(node -> val);
 
             if (node -> left) {
-                // left (-1, 1)
+                // left (-1, +1)
                 q.push({node -> left, {x - 1, y + 1}});
             }
             if (node -> right) {
-                // right (1, 1)
+                // right (+1, +1)
                 q.push({node -> right, {x + 1, y + 1}});
             }
         }
 
-        vector<vector<int>> ans;
+        vector<vector<int>> res;
         for (auto p : m) {
             vector<int> col;
             for (auto q : p.second) {
                 col.insert(col.end(), q.second.begin(), q.second.end());
             }
-            ans.push_back(col);
+            res.push_back(col);
         }
-        return ans;
+        return res;
     }
 };
