@@ -15,7 +15,9 @@ class Solution {
 public:
     long res = 0, total = 0, sub;
     int maxProduct(TreeNode* root) {
+        // Step 1: Calculate the total sum of the tree
         total = sum(root);
+        // Step 2: After the total sum is calculated, calculate the sum of the subtree
         sum(root);
         return res % (int)(1e9 + 7);
     }
