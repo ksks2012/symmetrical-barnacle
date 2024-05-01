@@ -14,19 +14,20 @@
 class Solution {
 public:
     int sum = 0;
-
-    void dfs(TreeNode* current, TreeNode* parent, TreeNode* grandParent) {
+    void DFS(TreeNode* current, TreeNode* parent, TreeNode* grandParent) {
+        // base case 
         if (current == nullptr) 
-            return; // base case 
+            return;
         if (grandParent != nullptr && grandParent->val % 2 == 0) {
             sum += current->val;
         }
-        dfs(current->left, current, parent);// ( newChild, parent, GrandParent)
-        dfs(current->right, current, parent);
+        // ( newChild, parent, GrandParent)
+        DFS(current->left, current, parent);
+        DFS(current->right, current, parent);
     }
 
     int sumEvenGrandparent(TreeNode* root) {
-        dfs(root, nullptr, nullptr);
+        DFS(root, nullptr, nullptr);
         return sum;
     }
 };
