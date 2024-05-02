@@ -96,6 +96,7 @@ public:
         int good = 0;
         int bad = 0;
 
+        // counting
         for(int i = 0; i < m; i++) {
             for(int j = 0; j < n; j++) {
                 if(grid[i][j] == 2) {
@@ -119,12 +120,15 @@ public:
             for(int i = 0; i < q_size; ++i) {
                 pair<int, int> top = q.front(); 
                 q.pop();
+                // 4 ways
                 for (int k = 0; k < 4; ++k) {
                     int x = top.first + way[k];
                     int y = top.second + way[k + 1];
                     if (x < 0 || x >= m || y < 0 || y >= n || grid[x][y] == 0) 
                         continue;
+                    // store next
                     if(grid[x][y] == 1) {
+                        good--;
                         grid[x][y] = 2;
                         q.push(pair<int, int>(x, y));
                     }  
@@ -133,14 +137,6 @@ public:
             ++count;
         }
 
-        for(int i = 0; i < m; i++) {
-            for(int j = 0; j < n; j++) {
-                if(grid[i][j] == 1) {
-                    return -1;
-                }
-            }
-        }
-
-        return count - 1;
+        return good == 0 ? count - 1 : -1;
     }
 };
