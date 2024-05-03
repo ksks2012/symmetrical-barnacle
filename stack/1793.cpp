@@ -5,13 +5,13 @@ public:
     int maximumScore(vector<int>& nums, int k) {
         int n = nums.size();
         int res = nums[k], mini = nums[k];
-        int i = k, j = k;
-        while (i > 0 || j < n - 1) {
-            if ((i > 0 ? nums[i - 1] : 0) < (j < n - 1 ? nums[j + 1] : 0))
-                mini = min(mini, nums[++j]);
+        int left = k, right = k;
+        while (left > 0 || right < n - 1) {
+            if ((left > 0 ? nums[left - 1] : 0) < (right < n - 1 ? nums[right + 1] : 0))
+                mini = min(mini, nums[++right]);
             else
-                mini = min(mini, nums[--i]);
-            res = max(res, mini * (j - i + 1));
+                mini = min(mini, nums[--left]);
+            res = max(res, mini * (right - left + 1));
         }
         return res;
     }
