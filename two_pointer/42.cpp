@@ -65,14 +65,18 @@ public:
         int ans = 0;
         stack<int> st;
         for (int i = 0; i < height.size(); i++) {
+            // find previous larger element
+            // = for solving repeat heights
             while (!st.empty() && height[i] >= height[st.top()]) {
                 int bottom_h = height[st.top()];
                 st.pop();
                 if (st.empty()) {
                     break;
                 }
+                // fill the area between two bars
                 int left = st.top();
-                int dh = min(height[left], height[i]) - bottom_h; // height of area
+                // height of area
+                int dh = min(height[left], height[i]) - bottom_h; 
                 ans += dh * (i - left - 1);
             }
             st.push(i);
