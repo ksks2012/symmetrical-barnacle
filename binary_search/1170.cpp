@@ -20,22 +20,25 @@ public:
     vector<int> numSmallerByFrequency(vector<string>& queries, vector<string>& words) {
         int m = queries.size();
         vector<int> q(m, 0);
+        // count queries
         for(int i = 0; i < m; i++) {
             q[i] = helper(queries[i]);
         }
 
         int n = words.size();
         vector<int> w(n, 0);
+        // count words
         for(int i = 0; i < n; i++) {
             w[i] = helper(words[i]);
         }
 
         sort(w.begin(), w.end());
-        vector<int> ans(m, 0);
+        vector<int> res(m, 0);
+        // calculate the result of queries
         for(int i = 0; i < m; i++) {
-            ans[i] = n - (upper_bound(w.begin(), w.end(), q[i]) - w.begin());
+            res[i] = n - (upper_bound(w.begin(), w.end(), q[i]) - w.begin());
         }
 
-        return ans;
+        return res;
     }   
 };
