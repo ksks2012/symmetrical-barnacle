@@ -46,6 +46,43 @@ public:
     }
 };
 
+// endlesscheng
+class Solution {
+public:
+    int minimumOperations(vector<vector<int>>& grid) {
+        int m = grid.size(), n = grid[0].size();
+        vector<array<int, 10>> count(n);
+        for (auto& row : grid) {
+            for (int j = 0; j < n; j++) {
+                count[j][row[j]]++;
+            }
+        }
+
+        // -1: not calculated
+        vector<vector<int>> memo(n, vector<int>(11, -1));
+        function<int(int, int)> DFS = [&](int i, int j) -> int {
+            if (i < 0) {
+                return 0;
+            }
+            // using memory
+            auto& res = memo[i][j];
+            if (res != -1) {
+                return res;
+            }
+
+            res = 0;
+            for (int k = 0; k < 10; k++) {
+                if (k != j) {
+                    res = max(res, DFS(i - 1, k) + count[i][k]);
+                }
+            }
+            return res;
+        };
+        // m * n - unchanged block
+        return m * n - DFS(n - 1, 10);
+    }
+};
+
 class Solution {
 public:
     int minimumOperations(vector<vector<int>>& grid) {
