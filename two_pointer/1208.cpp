@@ -6,6 +6,7 @@ public:
         int n = s.size();
         vector<int> tmp(n, 0);
 
+        // calculate cost
         for(int i = 0; i < n; i++) {
             tmp[i] = abs(t[i] - s[i]);
         } 
