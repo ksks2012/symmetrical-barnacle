@@ -2,23 +2,23 @@
 
 class Solution {
 public:
-    vector<int> beautifulIndices(string s, string a, string b, int k) {
+    vector<int> beautifulIndices(string s, string a, string b_size, int k) {
         // Vector to store the beautiful indices
         vector<int> ans, indices_a, indices_b;
         
         // Lengths of strings
-        int x = s.size(), y = a.size(), z = b.size();
+        int s_size = s.size(), a_size = a.size(), z = b_size.size();
         
         // Step 2: Find indices of occurrences of string 'a'
-        for (int i = 0; i <= x - y; i++) {
-            if (s.substr(i, y) == a) {
+        for (int i = 0; i <= s_size - a_size; i++) {
+            if (s.substr(i, a_size) == a) {
                 indices_a.push_back(i);
             }
         }
         
         // Step 3: Find indices of occurrences of string 'b'
-        for (int j = 0; j <= x - z; j++) {
-            if (s.substr(j, z) == b) {
+        for (int j = 0; j <= s_size - z; j++) {
+            if (s.substr(j, z) == b_size) {
                 indices_b.push_back(j);
             }
         }
