@@ -62,6 +62,48 @@ public:
     }
 };
 
+// Mark
+class Solution {
+public:
+    int maximumLength(string s) {
+        // Map to store the count of character sequences along with their lengths
+        map<pair<char, int>, int> m;
+        int count = 0;
+
+        // Iterate through the string
+        for (int i = 0; i < s.length(); i++) {
+            count = 1;
+            // Store the count of each character sequence along with its length
+            m[{s[i], count}]++;
+
+            // Check for consecutive characters
+            for (int j = i; j < s.length(); j++) {
+                if (s[j] == s[j + 1]) {
+                    count++;
+                    // Store the count of each character sequence along with its length
+                    m[{s[i], count}]++;
+                } else {
+                    break;
+                }
+            }
+        }
+
+        int res = 0;
+
+        // Iterate through the stored character sequences and their lengths
+        for (auto x : m) {
+            // If a sequence appears at least three times, update the maximum length
+            if (x.second >= 3) {
+                res = max(x.first.second, res);
+            }
+        }
+
+        // Return the maximum length of the sequence that appears at least three times
+        return (res == 0) ? -1 : res;
+    }
+};
+
+
 // TLE in 2982
 // fast IO
 static auto __ = []()
