@@ -23,9 +23,6 @@ public:
         // same repeated -> find max_count
         int max_count = 0;
         for(int i = 0; i < 26; i++) {
-            cout << char(i + 'a') << endl;
-            cout << "repeat " << repeat[i] << endl;
-            cout << "count " << count[i] << endl;
             if(count[i] >= 3) {
                 if(repeat[i] > repeat[max_char]) {
                     max_char = i;
@@ -36,9 +33,6 @@ public:
                 max_repeat = max(max_repeat, repeat[i]);
             }
         }
-
-        cout << max_repeat << endl;
-        cout << (char)(max_char + 'a') << endl;
         if(max_repeat >= 3) {
             for(int k = max_repeat - 1; k > 0; k--) {
                 int tmp = 0;
