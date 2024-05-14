@@ -95,10 +95,10 @@ public:
         int res = 0;
 
         // Iterate through the stored character sequences and their lengths
-        for (auto x : m) {
+        for (auto [sequence, length] : m) {
             // If a sequence appears at least three times, update the maximum length
-            if (x.second >= 3) {
-                res = max(x.first.second, res);
+            if (length >= 3) {
+                res = max(sequence.second, res);
             }
         }
 
