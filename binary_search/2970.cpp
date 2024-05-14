@@ -39,27 +39,29 @@ class Solution {
 public:
     int incremovableSubarrayCount(vector<int>& nums) {
         int n = nums.size();
-        int i = 0;
-        // left
-        for(; i < n - 1; i++ ) {
-            if(nums[i + 1] <= nums[i]) 
+        int left = 0;
+        // left: increase
+        for(; left < n - 1; left++) {
+            if(nums[left + 1] <= nums[left]) 
                 break;
         }
-        // right
-        int j = n - 1;
-        for(; j > 0; j--) {
-            if(nums[j - 1] >= nums[j]) 
+        // right: decrease
+        int right = n - 1;
+        for(; right > 0; right--) {
+            if(nums[right - 1] >= nums[right]) 
                 break;
         }
-        int ans = 0;
-            while(i >= 0) {
-                int u = upper_bound(nums.begin() + j, nums.end(), nums[i]) - nums.begin();
-                ans += n - u + 1;
-                i--;
-            }
-        if(ans < (n * (n + 1)) / 2) {
-            ans += n - j + 1;
+
+        int res = 0;
+        while(left >= 0) {
+            int upper = upper_bound(nums.begin() + right, nums.end(), nums[left]) - nums.begin();
+            res += n - upper + 1;
+            left--;
         }
-        return ans;
+
+        if(res < (n * (n + 1)) / 2) {
+            res += n - right + 1;
+        }
+        return res;
     }
 };
