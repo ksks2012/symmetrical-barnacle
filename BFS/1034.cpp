@@ -3,17 +3,17 @@
 // TLE
 class Solution {
 public:
-    void dfs(vector<vector<int>>& g, int r, int c, int cl) {
+    void DFS(vector<vector<int>>& g, int r, int c, int cl) {
         if (r < 0 || c < 0 || r >= g.size() || c >= g[r].size() || g[r][c] != cl) {
             return;
         }
         
         g[r][c] = -cl;
         
-        dfs(g, r - 1, c, cl);
-        dfs(g, r + 1, c, cl);
-        dfs(g, r, c - 1, cl);
-        dfs(g, r, c + 1, cl);
+        DFS(g, r - 1, c, cl);
+        DFS(g, r + 1, c, cl);
+        DFS(g, r, c - 1, cl);
+        DFS(g, r, c + 1, cl);
         
         if (r > 0 && r < g.size() - 1 && c > 0 && c < g[r].size() - 1 && 
             cl == abs(g[r - 1][c]) && cl == abs(g[r + 1][c]) && 
@@ -24,7 +24,7 @@ public:
     }
 
     vector<vector<int>> colorBorder(vector<vector<int>>& grid, int r0, int c0, int color) {
-        dfs(grid, r0, c0, grid[r0][c0]);
+        DFS(grid, r0, c0, grid[r0][c0]);
         
         for (auto i = 0; i < grid.size(); ++i) {
             for (auto j = 0; j < grid[i].size(); ++j) {
@@ -57,10 +57,12 @@ public:
             int r0 = bfs[k].first, c0 = bfs[k].second;
             vector<vector<int>> dirs = {{0, 1}, {1, 0}, {-1, 0}, {0, -1}};
             
+            // DFS four ways of current block
             for (const auto& dir : dirs) {
                 int i = dir[0], j = dir[1];
                 int r = r0 + i, c = c0 + j;
                 
+                // check is border or  is component
                 if (r >= 0 && r < m && c >= 0 && c < n && grid[r][c] == grid[r0][c0]) {
                     if (component.find({r, c}) == component.end()) {
                         bfs.push_back({r, c});
@@ -72,6 +74,7 @@ public:
             }
         }
         
+        // draw the border
         for (const auto& [x, y] : border) {
             grid[x][y] = color;
         }
