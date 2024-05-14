@@ -8,8 +8,10 @@ public:
         int count[26] = { 0 };
         int repeat[26] = { 0 };
         count[s[0] - 'a']++;
+
         int max_char = 0;
         int n = s.size();
+        // count same characters
         for(int i = 1; i < n; i++) {
             count[s[i] - 'a']++;
             if(s[i] == s[i - 1]) {
@@ -33,7 +35,9 @@ public:
                 max_repeat = max(max_repeat, repeat[i]);
             }
         }
+
         if(max_repeat >= 3) {
+            // checking for decreasing lengths of consecutive character repeats
             for(int k = max_repeat - 1; k > 0; k--) {
                 int tmp = 0;
                 for(int i = 0; i < n; i++) {
