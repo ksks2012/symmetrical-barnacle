@@ -9,6 +9,14 @@ public:
         
     }
     
+    /**
+     * If the index already exists and its value is different from the given number,
+     * the index is removed from the previous value's set. Then, the index is updated
+     * with the new number, and the index is added to the set of the new number.
+     * 
+     * @param index The index to be changed.
+     * @param number The new value to be assigned to the index.
+     */
     void change(int index, int number) {
         if(idx_val.find(index) != idx_val.end() && idx_val[index] != number) {
             num_idx[idx_val[index]].erase(index);
