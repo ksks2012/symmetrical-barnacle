@@ -24,8 +24,10 @@ public:
     }
     vector<vector<int>> closestNodes(TreeNode* root, vector<int>& queries) {
         vector<vector<int>> res;
+        // tree -> vector
         traverse(root);
         for (int q : queries) {
+            // binary search
             auto it = lower_bound(begin(val), end(val), q); 
             if (it != end(val) && *it == q)
                 res.push_back({q, q});
