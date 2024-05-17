@@ -32,6 +32,7 @@ public:
     int rangeSum(vector<int>& nums, int n, int left, int right) {
         priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> mqueue;
         for (int i = 0; i < n; i++)
+            // {nums[i] + ... + nums[j], j + 1}
             mqueue.push({nums[i], i + 1});
 
         int res = 0;
