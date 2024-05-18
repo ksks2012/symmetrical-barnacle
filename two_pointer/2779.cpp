@@ -8,6 +8,7 @@ public:
 
         int maxi = 0;
         int left = 0;
+        // max - min <= k * 2
         int target = 2 * k;
         for(int right = 0; right < n; right++) {
             while(nums[right] - nums[left] > target) {
