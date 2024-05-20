@@ -8,6 +8,7 @@ public:
     int maxConsecutiveAnswers(string answerKey, int k) {
         int n = answerKey.size();
         vector<int> tmp(n, 0);
+        // turn T and F to 1 and 0
         for(int i = 0; i < n; i++) {
             if(answerKey[i] == 'T') {
                 tmp[i] = 1;
@@ -19,6 +20,7 @@ public:
         int left = 0;
         int cur[2] = {0};
         int maxi = 0;
+        // Sliding Window Technique
         for(int right = 0; right < n; ++right) {
             cur[tmp[right]]++;
             maxi = max(maxi, cur[tmp[right]]);          
@@ -31,3 +33,4 @@ public:
         return left;
     }
 };
+
