@@ -9,8 +9,10 @@ public:
         int ans = 0;
         int zero = 0;
         for(int right = 0; right < n; right++) {
+            // check right point
             if(nums[right] == 0)
                 zero++;
+            // move left point
             while(zero > k) {
                 if(nums[left] == 0)
                     zero--;
