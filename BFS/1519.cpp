@@ -11,6 +11,7 @@ public:
                 for (auto k = 0; k < 26; ++k)
                     count[k] += count_tmp[k];
             }
+            // count label
             res[i] = ++count[labels[i] - 'a'];
         }
     }
@@ -19,6 +20,7 @@ public:
         vector<int> ans(n);
         int count[26] = {};
         vector<vector<int>> tmp(n);
+        // build graph
         for (auto &e : edges) {
             tmp[e[0]].push_back(e[1]);
             tmp[e[1]].push_back(e[0]);
