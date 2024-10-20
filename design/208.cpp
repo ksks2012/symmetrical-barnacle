@@ -21,6 +21,7 @@ public:
             }
             tmp = tmp->children[idx];
         }
+        tmp->isEnd = true;
     }
     
     bool search(string word) {
