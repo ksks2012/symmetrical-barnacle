@@ -24,3 +24,27 @@ public:
         return res == 2 ? 0 : res;      
     }
 };
+
+// Brute Force
+class Solution {
+public:
+    int lenLongestFibSubseq(vector<int>& arr) {
+        int N = arr.size();
+        unordered_set<int> st(arr.begin(), arr.end());
+
+        int res = 0;
+        for (int i = 0; i < N; ++i)
+            for (int j = i+1; j < N; ++j) {
+                int x = arr[j], y = arr[i] + arr[j];
+                int length = 2;
+                while (st.find(y) != st.end()) {
+                    int z = x + y;
+                    x = y;
+                    y = z;
+                    res = max(res, ++length);
+                }
+            }
+
+        return res;
+    }
+};
