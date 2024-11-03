@@ -16,3 +16,15 @@ public:
         return false;
     }
 };
+
+class Solution {
+public:
+    bool rotateString(string s, string goal) {
+        if (s.size() != goal.size()) 
+            return false;
+
+        string tmp = s + s;
+
+        return tmp.find(goal) < tmp.length();
+    }
+};
