@@ -35,3 +35,25 @@ public:
         return true;
     }
 };
+
+class Solution {
+public:
+    bool canSortArray(vector<int>& nums) {
+        vector<pair<int,int>> mp;
+        mp.push_back({nums[0], nums[0]});
+        for(int i = 1; i < nums.size(); i++) {
+            int cur = __builtin_popcount(nums[i]);
+            int prev = __builtin_popcount(nums[i-1]);
+            if(cur != prev) {   
+                mp.push_back({nums[i], nums[i]});
+            }
+            mp.back().first = min(mp.back().first, nums[i]);
+            mp.back().second = max(mp.back().second, nums[i]);
+        }
+        for(int i = 1; i < mp.size(); i++) {
+            if(mp[i - 1].second > mp[i].first)
+                return false;
+        }
+        return true;
+    }
+};
