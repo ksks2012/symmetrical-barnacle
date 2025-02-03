@@ -70,6 +70,6 @@ public:
             }
         }
 
-        return left;
+        return right;
     }
 };
