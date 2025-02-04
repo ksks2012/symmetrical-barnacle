@@ -46,3 +46,16 @@ public:
         return max(lower + 1, n - upper);
     }
 };
+
+class Solution {
+public:
+    int maximumCount(vector<int>& nums) {
+        int n = nums.size();
+        sort(nums.begin(), nums.end());
+
+        auto it_lower = lower_bound(nums.begin(), nums.end(), 0);
+        auto it_upper = upper_bound(nums.begin(), nums.end(), 0);
+
+        return max(it_lower - nums.begin(), nums.end() - it_upper);
+    }
+};
