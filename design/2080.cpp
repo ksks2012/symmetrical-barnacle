@@ -16,7 +16,7 @@ public:
             auto& v = m[value];
             auto left_idx = lower_bound(v.begin(), v.end(), left) - v.begin();
             auto right_idx = upper_bound(v.begin(), v.end(), right) - v.begin();
-            return right_idx - left_idx + 1;
+            return right_idx - left_idx;
         }
         return 0;
     }
