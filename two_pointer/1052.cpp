@@ -14,3 +14,19 @@ public:
         return satisfied + m_add_satisfied;
     }
 };
+
+class Solution {
+public:
+    int maxSatisfied(vector<int>& customers, vector<int>& grumpy, int minutes) {
+        int s[2]{}, maxi = 0;
+        for (int i = 0; i < customers.size(); i++) {
+            s[grumpy[i]] += customers[i];
+            if (i < minutes - 1) {
+                continue;
+            }
+            maxi = max(maxi, s[1]);
+            s[1] -= grumpy[i - minutes + 1] ? customers[i - minutes + 1] : 0;
+        }
+        return s[0] + maxi;
+    }
+};
