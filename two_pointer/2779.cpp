@@ -3,6 +3,7 @@
 class Solution {
 public:
     int maximumBeauty(vector<int>& nums, int k) {
+        // subsequence
         sort(nums.begin(), nums.end());
         int n = nums.size();
 
