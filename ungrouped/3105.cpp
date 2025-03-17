@@ -25,3 +25,27 @@ public:
         return max(incr, decr);      
     }
 };
+
+
+class Solution {
+public:
+    int longestMonotonicSubarray(vector<int> &nums) {
+        int res = 1;
+        int i = 0, n = nums.size();
+        while (i < n - 1) {
+            if (nums[i + 1] == nums[i]) {
+                i++; // skip
+                continue;
+            }
+            int start = i;
+            bool inc = nums[i + 1] > nums[i]; // increase or decrease
+            i += 2;
+            while (i < n && nums[i] != nums[i - 1] && (nums[i] > nums[i - 1]) == inc) {
+                i++;
+            }
+            res = max(res, i - start);
+            i--;
+        }
+        return res;
+    }
+};
