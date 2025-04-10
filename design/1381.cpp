@@ -14,7 +14,6 @@ public:
         
         if(stack.size() < maxSize)
             stack.push_back(x);
-        cout << maxSize << endl;
     }
     
     int pop() {
