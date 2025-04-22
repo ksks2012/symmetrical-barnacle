@@ -40,7 +40,7 @@ public:
  * bool param_4 = obj->empty();
  */
 
- class Queue {
+class Queue {
     stack<int> input, output;
 public:
 
