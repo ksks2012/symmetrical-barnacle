@@ -40,27 +40,42 @@ public:
  * bool param_4 = obj->empty();
  */
 
-class Queue {
-    stack<int> input, output;
+
+ class MyQueue {
+private:
+    stack<int> in_stack, out_stack;
+
+    void transfer() {
+        while (!in_stack.empty()) {
+            out_stack.push(in_stack.top());
+            in_stack.pop();
+        }
+    }
+    
 public:
+    MyQueue() {}
 
     void push(int x) {
-        input.push(x);
+        in_stack.push(x);
     }
 
-    void pop(void) {
-        peek();
-        output.pop();
+    int pop() {
+        if (out_stack.empty()) {
+            transfer();
+        }
+        int topElement = out_stack.top();
+        out_stack.pop();
+        return topElement;
     }
 
-    int peek(void) {
-        if (output.empty())
-            while (input.size())
-                output.push(input.top()), input.pop();
-        return output.top();
+    int peek() {
+        if (out_stack.empty()) {
+            transfer();
+        }
+        return out_stack.top();
     }
 
-    bool empty(void) {
-        return input.empty() && output.empty();
+    bool empty() {
+        return in_stack.empty() && out_stack.empty();
     }
 };
