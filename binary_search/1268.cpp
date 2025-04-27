@@ -6,7 +6,7 @@ public:
     vector<vector<string>> suggestedProducts(vector<string>& products, string searchWord) {
         sort(products.begin(), products.end());
         int n = searchWord.size();
-        vector<vector<string>> ans;
+        vector<vector<string>> res;
 
         string cur = "";
         auto it = products.begin();
@@ -21,10 +21,10 @@ public:
                 tmp.push_back(s);
             }
 
-            ans.push_back(tmp);
+            res.push_back(tmp);
         }
 
-        return ans;
+        return res;
     }
 };
 
