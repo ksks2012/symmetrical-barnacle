@@ -2,26 +2,26 @@
 
 class Solution {
 public:
-    void DFS(vector<vector<int>>& rooms, vector<int> &tmp, int cur_idx, int &count) {
+    void DFS(vector<vector<int>>& rooms, vector<int> &visited, int cur_idx, int &count) {
         int key_size = rooms[cur_idx].size();
 
-        if(tmp[cur_idx] == 1) {
+        if(visited[cur_idx] == 1) {
             return;
         }
-        tmp[cur_idx] = 1;
+        visited[cur_idx] = 1;
         count++;
         if(key_size == 0)
             return;
         for(int i = 0; i < key_size; i++) {
-            DFS(rooms, tmp, rooms[cur_idx][i], count);
+            DFS(rooms, visited, rooms[cur_idx][i], count);
         }
     }
 
     bool canVisitAllRooms(vector<vector<int>>& rooms) {
-        vector<int> tmp(1001, 0);
+        vector<int> visited(1001, 0);
         int count = 0;
 
-        DFS(rooms, tmp, 0, count);
+        DFS(rooms, visited, 0, count);
         
         return count == rooms.size();
     }
