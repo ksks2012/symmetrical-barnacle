@@ -33,3 +33,26 @@ public:
         return res;
     }
 };
+
+// lee
+class Solution {
+public:
+    vector<string> findAndReplacePattern(vector<string>& words, string pattern) {
+        auto encode = [](const string& s) {
+            unordered_map<char, int> m;
+            string res;
+            for (char c : s) {
+                if (!m.count(c)) m[c] = m.size();
+                res += 'a' + m[c];
+            }
+            return res;
+        };
+        
+        string p = encode(pattern);
+        vector<string> ans;
+        for (const string& w : words)
+            if (encode(w) == p)
+                ans.push_back(w);
+        return ans;
+    }
+};
