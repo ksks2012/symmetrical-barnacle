@@ -26,6 +26,8 @@ private:
         return startStation + "," + endStation;
     }
 
+    // id -> {stationName, time}
+    // stationName1,stationName2 -> {totalTime, cnt}
     unordered_map<int, pair<string, int>> check_record;
     unordered_map<string, pair<double, int>> cnt;
 };
