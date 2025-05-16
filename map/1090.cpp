@@ -47,3 +47,35 @@ public:
         return sum;
     }
 };
+
+// optimal solution
+class Solution {
+public:
+    int largestValsFromLabels(vector<int>& values, vector<int>& labels, int numWanted, int useLimit) {
+        int n = values.size();
+        vector<pair<int, int>> zipped;
+        for (int i = 0; i < n; ++i)
+            zipped.emplace_back(values[i], labels[i]);
+
+        sort(zipped.begin(), zipped.end(), [](const auto& a, const auto& b) {
+            return a.first > b.first;
+        });
+
+        unordered_map<int, int> label_used;
+        int count = 0, sum = 0;
+
+        for (auto& p : zipped) {
+            int val = p.first, label = p.second;
+            if (label_used[label] < useLimit) {
+                sum += val;
+                label_used[label]++;
+                count++;
+                if (count == numWanted)
+                    break;
+            }
+        }
+
+        return sum;
+    }
+};
+    
