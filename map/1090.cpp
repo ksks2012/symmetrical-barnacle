@@ -82,15 +82,15 @@ public:
 // Greedy
 class Solution {
 public:    
-    int largestValsFromLabels(vector<int>& vs, vector<int>& ls, int wanted, int limit, int res = 0) {
+    int largestValsFromLabels(vector<int>& values, vector<int>& labels, int numWanted, int limit, int res = 0) {
         multimap<int, int> mm;
         unordered_map<int, int> mp;
-        for (auto i = 0; i < vs.size(); ++i) 
-            mm.insert({vs[i], ls[i]});
-        for (auto it = rbegin(mm); it != rend(mm) && wanted > 0; ++it) {
+        for (auto i = 0; i < values.size(); ++i) 
+            mm.insert({values[i], labels[i]});
+        for (auto it = rbegin(mm); it != rend(mm) && numWanted > 0; ++it) {
             if (++mp[it->second] <= limit) {
                 res += it->first;
-                --wanted;
+                --numWanted;
             }
         }
         return res;
