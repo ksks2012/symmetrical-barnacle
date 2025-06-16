@@ -3,16 +3,16 @@
 class Solution {
 public:
     int countNegatives(vector<vector<int>>& grid) {
-        int ans = 0;
+        int res = 0;
 
         for(int i = 0; i < grid.size(); i++) {
             for(int j = 0; j < grid[i].size(); j++) {
                 if(grid[i][j] < 0) 
-                    ans++;
+                    res++;
             }
         }
 
-        return ans;
+        return res;
     }
 };
 
@@ -20,7 +20,7 @@ public:
 class Solution {
 public:
     int countNegatives(vector<vector<int>>& grid) {
-        int ans = 0;
+        int res = 0;
         int m = grid.size();
         int n = grid[0].size();
 
@@ -29,13 +29,13 @@ public:
 
         while(i >= 0 && i < m && j >= 0 && j < n) {
             if(grid[i][j] < 0) {
-                ans += n - j;
+                res += n - j;
                 i = i - 1;
             } else {
                 j = j + 1;
             }
         }
 
-        return ans;
+        return res;
     }
 };
