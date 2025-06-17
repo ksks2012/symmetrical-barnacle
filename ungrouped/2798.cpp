@@ -13,3 +13,12 @@ public:
         return res;
     }
 };
+
+class Solution {
+public:
+    int numberOfEmployeesWhoMetTarget(vector<int>& hours, int target) {
+        return count_if(begin(hours), end(hours), [&](int h) {
+            return h >= target; 
+        });
+    }
+};
