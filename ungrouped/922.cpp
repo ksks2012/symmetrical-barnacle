@@ -30,3 +30,21 @@ public:
         return nums;
     }
 };
+
+class Solution {
+public:
+    vector<int> sortArrayByParityII(vector<int>& nums) {
+        int n = nums.size();
+        for(int odd = 0, even = 1; odd < n && even < n; ) {
+            while(odd < n && nums[odd] % 2 == 0) 
+                odd += 2;
+            while(even < n && nums[even] % 2 == 1) 
+                even += 2;
+            if(odd < n && even < n) {
+                swap(nums[odd], nums[even]);
+            }
+        }
+
+        return nums;
+    }
+};
