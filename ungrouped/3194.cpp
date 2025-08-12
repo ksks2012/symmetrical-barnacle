@@ -11,7 +11,6 @@ public:
         for(int i = 0; i < n / 2; i++) {
             double avg = double(nums[i] + nums[n - i - 1]) / 2;
             res = min(res, avg);
-            cout << avg << endl;
         }
 
         return res;
