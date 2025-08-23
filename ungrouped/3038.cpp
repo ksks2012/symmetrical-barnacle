@@ -3,7 +3,7 @@
 class Solution {
 public:
     int maxOperations(vector<int>& nums) {
-        int ans = 0;
+        int res = 0;
 
         int i = 2;
         int target = 0;
@@ -24,9 +24,9 @@ public:
                 break;
             }
         }
-        ans = max(maxi, ans);
+        res = max(maxi, res);
 
-        return ans;
+        return res;
     }
 };
 
@@ -35,13 +35,13 @@ public:
     int maxOperations(vector<int>& nums) {
         int n = nums.size();
         int target = nums[0] + nums[1];
-        int ans = 0;
-        for(int i = 0;i < n - 1; i += 2){
+        int res = 0;
+        for(int i = 0; i < n - 1; i += 2){
             if(target == (nums[i] + nums[i + 1])) 
-                ans++;
+                res++;
             else 
                 break;
         }
-        return ans;
+        return res;
     }
 };
