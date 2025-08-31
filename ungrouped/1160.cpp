@@ -31,3 +31,25 @@ public:
         return totalLength;
     }
 };
+
+class Solution {
+public:
+    int countCharacters(vector<string>& words, string chars) {
+        int charCount[26] = {0};
+        for (char c : chars) charCount[c - 'a']++;
+
+        int totalLength = 0;
+        for (const string& word : words) {
+            int wordCount[26] = {0};
+            bool canForm = true;
+            for (char c : word) {
+                if (++wordCount[c - 'a'] > charCount[c - 'a']) {
+                    canForm = false;
+                    break;
+                }
+            }
+            if (canForm) totalLength += word.length();
+        }
+        return totalLength;
+    }
+};
