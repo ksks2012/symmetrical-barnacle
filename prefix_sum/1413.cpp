@@ -3,12 +3,12 @@
 class Solution {
 public:
     int minStartValue(vector<int>& nums) {
-        int ans = 0, sum = 0;
+        int res = 0, sum = 0;
         for(auto n : nums) {
             sum += n;
-            ans = min(ans, sum);
+            res = min(res, sum);
         }
 
-        return -ans + 1;
+        return -res + 1;
     }
 };
