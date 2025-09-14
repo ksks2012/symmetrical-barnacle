@@ -26,3 +26,15 @@ public:
 
     }
 };
+
+// Vlad
+class Solution {
+public:
+    vector<int> findIntersectionValues(vector<int>& n1, vector<int>& n2) {
+        unordered_set<int> s1(begin(n1), end(n1)), s2(begin(n2), end(n2));
+        return {
+            (int)count_if(begin(n1), end(n1), [&](int n){ return s2.count(n); }),
+            (int)count_if(begin(n2), end(n2), [&](int n){ return s1.count(n); })
+        };
+    }
+};
