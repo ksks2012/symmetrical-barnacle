@@ -6,9 +6,9 @@ class Solution {
 public:
     int rangeSum(vector<int>& nums, int n, int left, int right) {
         int m = nums.size();
-        vector<int> sum;
+        vector<long long> sum;
         for(int i = 0; i < m; i++) {
-            int tmp = nums[i];
+            long long tmp = nums[i];
             sum.push_back(tmp);
             for(int j = i + 1; j < m; j++) {
                 tmp += nums[j];
@@ -17,12 +17,12 @@ public:
         }
 
         sort(sum.begin(), sum.end());
-        int res = 0;
-        for(int i = left - 1; i < right && i < sum.size(); i++) {
-            res += sum[i] % MOD;
+        long long res = 0;
+        for(int i = left - 1; i < right && i < (int)sum.size(); i++) {
+            res = (res + (sum[i] % MOD)) % MOD;
         }
 
-        return res;
+        return (int)res;
     }
 };
 
@@ -30,12 +30,12 @@ public:
 class Solution {
 public:
     int rangeSum(vector<int>& nums, int n, int left, int right) {
-        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> mqueue;
+        priority_queue<pair<long long, int>, vector<pair<long long, int>>, greater<pair<long long, int>>> mqueue;
         for (int i = 0; i < n; i++)
             // {nums[i] + ... + nums[j], j + 1}
-            mqueue.push({nums[i], i + 1});
+            mqueue.push(make_pair((long long)nums[i], i + 1));
 
-        int res = 0;
+        long long res = 0;
         for (int i = 1; i <= right; i++) {
             auto top = mqueue.top();
             mqueue.pop();
@@ -46,6 +46,6 @@ public:
                 mqueue.push(top);
             }
         }
-        return res;
+        return (int)res;
     }
 };
