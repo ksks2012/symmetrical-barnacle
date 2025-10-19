@@ -1,5 +1,6 @@
 #include "include.h"
 
+// Prefix Sum
 class Solution {
 public:
     int sumOddLengthSubarrays(vector<int>& arr) {
@@ -11,13 +12,13 @@ public:
             sum[i + 1] = tmp;
         }
 
-        int ans = 0;
+        int res = 0;
         for(int i = 0; i < n; i++) {
             for(int j = 1; j + i <= n; j += 2) {
-                ans += (sum[i + j] - sum[i]);
+                res += (sum[i + j] - sum[i]);
             }
         }
             
-        return ans;     
+        return res;     
     }
 };
