@@ -11,41 +11,44 @@
  * };
  */
 class Solution {
-    vector<int> way = {0, 1, 0, -1, 0};
 public:
     vector<vector<int>> spiralMatrix(int m, int n, ListNode* head) {
-        int max_x = m - 1;
-        int max_y = n - 1;
-        int min_x = 0;
-        int min_y = 0;
-
         vector<vector<int>> res(m, vector<int>(n, -1));
+        if (!head) return res;
 
-        while (head) {
-            for (int col = min_y; col <= max_y && head; ++col) {
-                res[min_x][col] = head->val;
+        int top = 0, bottom = m - 1;
+        int left = 0, right = n - 1;
+
+        while (head && top <= bottom && left <= right) {
+            for (int col = left; col <= right && head; ++col) {
+                res[top][col] = head->val;
                 head = head->next;
             }
-            min_x++;
-            
-            for (int row = min_x; row <= max_x && head; ++row) {
-                res[row][max_y] = head->val;
+            ++top;
+
+            for (int row = top; row <= bottom && head; ++row) {
+                res[row][right] = head->val;
                 head = head->next;
             }
-            max_y--;
-            
-            for (int col = max_y; col >= min_y && head; --col) {
-                res[max_x][col] = head->val;
-                head = head->next;
+            --right;
+
+            if (top <= bottom) {
+                for (int col = right; col >= left && head; --col) {
+                    res[bottom][col] = head->val;
+                    head = head->next;
+                }
+                --bottom;
             }
-            max_x--;
-            
-            for (int row = max_x; row >= min_x && head; --row) {
-                res[row][min_y] = head->val;
-                head = head->next;
+
+            if (left <= right) {
+                for (int row = bottom; row >= top && head; --row) {
+                    res[row][left] = head->val;
+                    head = head->next;
+                }
+                ++left;
             }
-            min_y++;
         }
+
         return res;
     }
 };
