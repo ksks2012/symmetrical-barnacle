@@ -3,7 +3,7 @@
 class Solution {
 public:
     void back_tracking(vector<vector<int>>& res, vector<int>& nums, int cur) {
-        if (cur == nums.size() -1) {
+        if (cur == nums.size()) {
             res.push_back(nums);
             return;
         }
