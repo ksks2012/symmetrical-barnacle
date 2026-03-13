@@ -2,37 +2,39 @@
 
 class Solution {
 private:
-    unordered_map<char, string> digitToLetters = {
-        {'2', "abc"},
-        {'3', "def"},
-        {'4', "ghi"},
-        {'5', "jkl"},
-        {'6', "mno"},
-        {'7', "pqrs"},
-        {'8', "tuv"},
-        {'9', "wxyz"}
+    const vector<string> digitToLetters = {
+        "",    "",    "abc",  "def", "ghi",
+        "jkl", "mno", "pqrs", "tuv", "wxyz"
     };
 
 public:
-    void backtrack(string digits, int index, string current, vector<string>& res) {
+    void backtrack(const string& digits, int index, string& path, vector<string>& res) {
         if (index == digits.size()) {
-            res.push_back(current);
+            res.emplace_back(path);
             return;
         }
+
         char digit = digits[index];
-        if (digitToLetters.count(digit)) {
-            for (char letter : digitToLetters[digit]) {
-                backtrack(digits, index + 1, current + letter, res);
-            }
+        int d = digit - '0';
+
+        if (d < 2 || d > 9) {
+            backtrack(digits, index + 1, path, res);
+            return;
+        }
+
+        for (char c : digitToLetters[d]) {
+            path.push_back(c);
+            backtrack(digits, index + 1, path, res);
+            path.pop_back();
         }
     }
 
     vector<string> letterCombinations(string digits) {
-
         vector<string> res;
+        if (digits.empty()) return res;
 
-        backtrack(digits, 0, "", res);
-
+        string path = "";
+        backtrack(digits, 0, path, res);
         return res;
     }
 };
