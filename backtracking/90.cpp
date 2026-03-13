@@ -3,13 +3,10 @@
 class Solution {
 public:
     void back_tracking(vector<vector<int>>& res, vector<int>& nums, int cur, vector<int> out) {
-        res.push_back(out);
-        if(cur == nums.size()) {
-            return;
-        }
-
+        res.emplace_back(out);
+        
         for(int i = cur; i < nums.size(); i++) {
-            if(i > cur && nums[i] == nums[i -1]) {
+            if(i > cur && nums[i] == nums[i - 1]) {
                 continue;
             }
             out.push_back(nums[i]);
