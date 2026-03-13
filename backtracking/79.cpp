@@ -67,7 +67,7 @@ public:
 		return ans;
     }
 
-	void back_tracking(vector<vector<char>>& board, string word, int row, int col, bool& ans) {
+	void back_tracking(vector<vector<char>>& board, const string &word, int row, int col, bool& ans) {
 		if (row < 0 || row >= board.size() || col < 0 || col >= board[0].size()) return;
 		if (board[row][col] != word[0]) return;
 		if (word.size() == 1) {
@@ -127,6 +127,65 @@ public:
                         return true;
                     }
                     board[i][j] = word[0];
+                }
+            }
+        }
+        return false;
+    }
+};
+
+class Solution {
+private:
+    // Up, down, left, right: (-1,0), (1,0), (0,-1), (0,1)
+    const int dirs[4][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+    
+    bool dfs(vector<vector<char>>& board, const string& word, 
+             int row, int col, int pos) {
+        // Entire word matched → success
+        if (pos == word.size()) {
+            return true;
+        }
+        
+        // Boundary check + current cell does not match or is already used
+        int m = board.size();
+        int n = board[0].size();
+        if (row < 0 || row >= m || col < 0 || col >= n ||
+            board[row][col] != word[pos]) {
+            return false;
+        }
+        
+        // Mark as used
+        char temp = board[row][col];
+        board[row][col] = '#';
+        
+        // Try four directions
+        for (const auto& d : dirs) {
+            int nr = row + d[0];
+            int nc = col + d[1];
+            if (dfs(board, word, nr, nc, pos + 1)) {
+                return true;
+            }
+        }
+        
+        // Backtrack
+        board[row][col] = temp;
+        return false;
+    }
+
+public:
+    bool exist(vector<vector<char>>& board, string word) {
+        if (word.empty()) return true;
+        if (board.empty() || board[0].empty()) return false;
+        
+        int m = board.size();
+        int n = board[0].size();
+        
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                if (board[i][j] == word[0]) {
+                    if (dfs(board, word, i, j, 0)) {
+                        return true;
+                    }
                 }
             }
         }
