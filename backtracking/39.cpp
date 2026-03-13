@@ -2,7 +2,7 @@
 
 class Solution {
 public:
-    void back_tracking(vector<int>& candidates, int target, int start, vector<int> path, vector<vector<int>>& res) {
+    void back_tracking(vector<int>& candidates, int target, int start, vector<int> &path, vector<vector<int>>& res) {
         if (target == 0) {
             res.push_back(path);
             return;
@@ -18,8 +18,9 @@ public:
 
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
         vector<vector<int>> res;
+        vector<int> tmp;
         sort(candidates.begin(), candidates.end());
-        back_tracking(candidates, target, 0, vector<int>(), res);
+        back_tracking(candidates, target, 0, tmp, res);
         return res;
     }
 };
