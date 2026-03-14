@@ -38,19 +38,19 @@ public:
 
         int left = 0;
         int right = n - 1;
-        int pre_max = 0;
-        int suf_max = 0;
+        int pre_max = height[left];
+        int suf_max = height[right];
 
-        while(left <= right) {
-            pre_max = max(pre_max, height[left]);
-            suf_max = max(suf_max, height[right]);
+        while(left < right) {
 
             if(pre_max < suf_max) {
-                res += pre_max - height[left];
                 left++;
+                pre_max = max(pre_max, height[left]);
+                res += pre_max - height[left];
             } else {
-                res += suf_max - height[right];
                 right--;
+                suf_max = max(suf_max, height[right]);
+                res += suf_max - height[right];
             }
         }
 
