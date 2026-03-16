@@ -12,6 +12,14 @@ private:
     unordered_map<int, Node*> cache;           // key → Node*
     Node *head, *tail;                         // dummy head and tail nodes
 
+    // Insert a node right after head (most recently used)
+    void insertToFront(Node* node) {
+        node->next = head->next;
+        node->prev = head;
+        head->next->prev = node;
+        head->next = node;
+    }
+
     // Move a node to the front (most recently used)
     void moveToHead(Node* node) {
         if (node == head->next) return;        // already at front, no need to move
@@ -21,10 +29,7 @@ private:
         node->next->prev = node->prev;
         
         // Insert after head
-        node->next = head->next;
-        node->prev = head;
-        head->next->prev = node;
-        head->next = node;
+        insertToFront(node);
     }
 
     // Remove the tail node (least recently used)
@@ -77,10 +82,7 @@ public:
         cache[key] = node;
         
         // Insert at front
-        node->next = head->next;
-        node->prev = head;
-        head->next->prev = node;
-        head->next = node;
+        insertToFront(node);
         
         // If over capacity → remove the least recently used
         if (cache.size() > capacity) {
@@ -88,10 +90,3 @@ public:
         }
     }
 };
-
-/**
- * Your LRUCache object will be instantiated and called as such:
- * LRUCache* obj = new LRUCache(capacity);
- * int param_1 = obj->get(key);
- * obj->put(key,value);
- */
