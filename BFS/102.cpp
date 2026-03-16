@@ -27,17 +27,17 @@ public:
         while(!q.empty()) {
             int n = q.size();
             
-            vector<int> tmp_ans;
+            vector<int> level;
             for(int i = 0; i < n; i++) {
                 TreeNode* tmp = q.front();
                 q.pop();
-                tmp_ans.push_back(tmp->val);
+                level.push_back(tmp->val);
                 if(tmp->left)
                     q.push(tmp->left);
                 if(tmp->right)
                     q.push(tmp->right);
             }
-            ans.push_back(tmp_ans);
+            ans.push_back(std::move(level));
         }
         return ans;
     }
@@ -49,8 +49,8 @@ public:
     void DFS(TreeNode* root, int level, vector<vector<int>> &ans) {
         if(root == nullptr)
             return;
-        if(level == ans.size()) {
-            ans.push_back({});
+        if(level >= ans.size()) {
+            ans.resize(level + 1);
         }
         ans[level].push_back(root->val);
         DFS(root->left, level + 1, ans);
