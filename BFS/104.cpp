@@ -17,12 +17,8 @@ public:
             return;
         max_level = max(level, max_level);
 
-        if(node->left != nullptr) {
-            inorder(node->left, level + 1, max_level);
-        }
-        if(node->right != nullptr) {
-            inorder(node->right, level + 1, max_level);
-        }
+        inorder(node->left, level + 1, max_level);
+        inorder(node->right, level + 1, max_level);
     }
     
     int maxDepth(TreeNode* root) {
