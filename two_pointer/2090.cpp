@@ -5,26 +5,27 @@ public:
     vector<int> getAverages(vector<int>& nums, int k) {
         int n = nums.size();
 
-        vector<int> ans(n, -1);
+        vector<int> res(n, -1);
         long long cur = 0;
         int mod = k * 2 + 1;
         if(n < mod)
-            return ans;
+            return res;
 
-        for(int i = 0; i < n; i++) {
+        for(int right = 0; right < n; right++) {
             // Add nums[i] to the window sum
-            cur += nums[i];
+            cur += nums[right];
 
-            if(i - mod >= 0) {
+            if(right - mod >= 0) {
                 // Remove nums[i - mod] from the window sum
-                cur -= nums[i - mod];
+                // left = right - mod
+                cur -= nums[right - mod];
             }
-            if(i >= mod - 1) {
+            if(right >= mod - 1) {
                 // Calculate and store the average in the result
-                ans[i - k] = cur / mod;
+                res[right - k] = cur / mod;
             }
         }
 
-        return ans;
+        return res;
     }
 };
