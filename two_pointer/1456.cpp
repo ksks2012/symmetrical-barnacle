@@ -17,3 +17,19 @@ public:
         return res;
     }
 };
+
+class Solution {
+public:
+    int maxVowels(string s, int k) {
+        int vowels[26] = {1,0,0,0,1,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,1};
+
+        int res = 0;
+        for (auto i = 0, cur_vow = 0; i < s.size(); ++i) {
+            cur_vow += vowels[s[i] - 'a'];
+            if (i >= k)
+                cur_vow -= vowels[s[i - k] - 'a'];
+            res = max(res, cur_vow);
+        }
+        return res;
+    }
+};
