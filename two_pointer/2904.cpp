@@ -35,18 +35,18 @@ public:
 class Solution {
 public:
     string shortestBeautifulSubstring(const string &s, int k) {
-        int ri = s.size() - 1, rj = 0;
+        int res_right = s.size() - 1, res_left = 0;
         for (int i = 0, j = 0; i < s.size(); ++i) {
             k -= s[i] == '1';
             while (k < 0 || s[j] == '0')
                 k += s[j++] == '1';
-            if (k == 0 && ri - rj >= i - j)
-                if (ri - rj > i - j || (ri - rj == i - j && 
-                    s.compare(j, i - j + 1, s, rj, ri - rj + 1) < 0)) {
-                    ri = i;
-                    rj = j;
+            if (k == 0 && res_right - res_left >= i - j)
+                if (res_right - res_left > i - j || (res_right - res_left == i - j && 
+                    s.compare(j, i - j + 1, s, res_left, res_right - res_left + 1) < 0)) {
+                    res_right = i;
+                    res_left = j;
                 }
         }
-        return k == 0 ? s.substr(rj, ri - rj + 1) : "";
+        return k == 0 ? s.substr(res_left, res_right - res_left + 1) : "";
     }
 };
