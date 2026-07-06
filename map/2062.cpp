@@ -22,3 +22,36 @@ public:
         return res;
     }
 };
+
+
+class Solution {
+    static constexpr string VOWELS = "aeiou";
+
+public:
+    int countVowelSubstrings(string word) {
+        unordered_map<char, int> mp;
+        int res = 0, start = 0, left = 0;
+
+        for (int i = 0; i < word.size(); i++) {
+            char ch = word[i];
+            if (!VOWELS.contains(ch)) {
+                mp.clear(); // reset
+                start = left = i + 1;
+                continue;
+            }
+
+            mp[ch]++;
+            while (mp.size() == 5) { // window contains all vowels
+                char out = word[left];
+                mp[out]--;
+                if (mp[out] == 0) {
+                    mp.erase(out);
+                }
+                left++;
+            }
+            res += left - start;
+        }
+
+        return res;
+    }
+};
