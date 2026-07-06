@@ -28,3 +28,29 @@ public:
 
     }
 };
+
+// op
+class Solution {
+public:
+    int countCompleteSubarrays(vector<int>& nums) {
+        unordered_set<int> st(nums.begin(), nums.end());
+        int target = st.size();
+        int res = 0, left = 0;
+        int n = nums.size();
+        unordered_map<int, int> mp;
+
+        for(int right = 0; right < n; right++) {
+            mp[nums[right]]++;
+            while(mp.size() == target) {
+                mp[nums[left]]--;
+                if(mp[nums[left]] == 0) {
+                    mp.erase(nums[left]);
+                }
+                left++;
+            }
+            res += left;
+        }
+        return res;
+
+    }
+};
