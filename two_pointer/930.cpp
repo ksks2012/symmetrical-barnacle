@@ -65,3 +65,26 @@ public:
         return res;
     }
 };
+
+class Solution {
+public:
+    int helper(vector<int>& nums, int goal) {
+        int res = 0;
+        int sum = 0;
+        int left = 0;
+        for (int right = 0; right < nums.size(); right++) {
+            sum += nums[right];
+            while (left <= right && sum > goal) {
+                sum -= nums[left];
+                left++;
+            }
+            res += (right - left + 1);
+        }
+        return res;
+    }   
+
+    int numSubarraysWithSum(vector<int>& nums, int goal) {
+        return helper(nums, goal) - helper(nums, goal - 1);
+    }
+};
+
