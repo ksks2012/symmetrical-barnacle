@@ -30,3 +30,19 @@ public:
         return res;
     }
 };
+
+class Solution {
+public:
+    vector<int> maximumBeauty(vector<vector<int>>& items, vector<int>& queries) {
+        ranges::sort(items, {}, [](auto& item) { return item[0]; });
+        for (int i = 1; i < items.size(); i++) {
+            items[i][1] = max(items[i][1], items[i - 1][1]);
+        }
+
+        for (int& q : queries) {
+            int j = ranges::upper_bound(items, q, {}, [](auto& item) { return item[0]; }) - items.begin();
+            q = j ? items[j - 1][1] : 0;
+        }
+        return queries;
+    }
+};
