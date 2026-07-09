@@ -46,3 +46,24 @@ public:
         return queries;
     }
 };
+
+class Solution {
+public:
+    vector<int> maximumBeauty(vector<vector<int>>& items, vector<int>& queries) {
+        ranges::sort(items, {}, [](auto& item) { return item[0]; });
+        int k = 0;
+        for (int i = 1; i < items.size(); i++) {
+            if (items[i][1] > items[k][1]) { // useful
+                items[++k] = items[i];
+            }
+        }
+
+        for (int& q : queries) {
+            int j = upper_bound(items.begin(), items.begin() + (k + 1), q, [](int value, auto& item) {
+                return value < item[0];
+            }) - items.begin();
+            q = j ? items[j - 1][1] : 0;
+        }
+        return queries;
+    }
+};
